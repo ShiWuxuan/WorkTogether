@@ -74,7 +74,7 @@
             </div>
 
             <div class="col-md-8 column">
-                <h3>当前任务：${taskName}    任务进度：${progress}%</h3>
+                <h3>当前任务：${taskName}&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;任务进度：${progress}%</h3>
             </div>
             <table class="table table-hover table-striped">
                 <thead>
