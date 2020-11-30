@@ -18,7 +18,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>Work Together</title>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -27,14 +27,14 @@
     <div class="row-fluid">
         <div class="col-md-2 column">
             <div class="page-header">
-                <img src="../img/ToDoTeam.JPG" class="img-responsive" alt="加载失败">
+                <img src="${pageContext.request.contextPath}/img/logo.png" class="img-responsive" alt="加载失败">
             </div>
             <ul class="nav nav-list">
                 <li class="nav-header">
-                    列表标题
+                    <h4>页面导航</h4>
                 </li>
                 <li class="active">
-                    <a href="#">首页</a>
+                    <a href="${pageContext.request.contextPath}">首页</a>
                 </li>
                 <li>
                     <a href="#">
@@ -52,6 +52,12 @@
                     <a href="#">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         日历
+                    </a>
+                </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/log/mylog/${userId}">
+                        <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                        日志
                     </a>
                 </li>
                 <li class="divider">
@@ -106,7 +112,7 @@
                         <td align="center">${task.endTime}</td>
                         <c:choose>
                             <c:when test="${task.priority==0}">
-                                <td align="center" style="color: deepskyblue; font-size: larger">一般</td>
+                                <td align="center" style=" color: deepskyblue; font-size: larger">一般</td>
                             </c:when>
                             <c:when test="${task.priority==1}">
                                 <td align="center" style="color: gold; font-size: larger">重要</td>
