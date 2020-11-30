@@ -26,9 +26,32 @@ public class TaskTest {
     }
 
     @Test
+    public void DaoTest(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        TaskDao taskDao = (TaskDao) context.getBean("taskDao");
+        System.out.println(taskDao.queryTaskName(1));
+    }
+
+    @Test
     public void queryTest(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         TaskService taskService =(TaskService) context.getBean("taskServiceImpl");
         System.out.println(taskService.queryTaskByKeyword(1,"大"));
+        System.out.println(taskService.queryTaskName(1));
+    }
+
+    @Test
+    public void subTaskTest(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        TaskDao taskDao = (TaskDao) context.getBean("taskDao");
+        System.out.println(taskDao.querySubTask(1));
+    }
+
+    @Test
+    public void completeTest(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        TaskDao taskDao = (TaskDao) context.getBean("taskDao");
+        TaskService taskService =(TaskService) context.getBean("taskServiceImpl");
+        System.out.println(taskService.completeTask(1,1));
     }
 }

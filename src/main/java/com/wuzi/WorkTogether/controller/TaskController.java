@@ -1,6 +1,7 @@
 package com.wuzi.WorkTogether.controller;
 
 import com.wuzi.WorkTogether.domain.Task;
+import com.wuzi.WorkTogether.domain.dto.SubTaskDto;
 import com.wuzi.WorkTogether.domain.dto.TaskDto;
 import com.wuzi.WorkTogether.service.TaskService;
 import org.springframework.stereotype.Controller;
@@ -31,10 +32,24 @@ public class TaskController {
         return "myTask";
     }
 
+    @RequestMapping("/gotoAddTask")
+    public String gotoAddTask(){
+        return "addTask";
+    }
+
     @RequestMapping("/addTask/{task}")
     public String addTask(@PathVariable Task task){
         taskService.addTask(task);
         return "redirect:myTask";
+    }
+
+    @RequestMapping("/taskDetail/{taskId}")
+    public String gotoTaskDetail(Model model,@PathVariable Integer taskId){
+        List<SubTaskDto> subTasks = taskService.querySubTask(taskId);
+        model.addAttribute("subTasks",subTasks);
+        model.addAttribute("taskName",taskService.queryTaskName(taskId));
+        model.addAttribute("progress",taskService.queryTaskProgress(taskId));
+        return "taskDetail";
     }
 
     @RequestMapping("/updateTask/{userId}/{progress}")
@@ -62,4 +77,12 @@ public class TaskController {
         return "myTask";
     }
 
+    @RequestMapping("completeSubTask/{taskId}/{subTaskId}")
+    public String CompleteSubTask(Model model,@PathVariable Integer taskId, @PathVariable Integer subTaskId){
+        List<SubTaskDto> subTasks = taskService.completeTask(taskId,subTaskId);
+        model.addAttribute("subTasks",subTasks);
+        model.addAttribute("taskName",taskService.queryTaskName(taskId));
+        model.addAttribute("progress",taskService.queryTaskProgress(taskId));
+        return "taskDetail";
+    }
 }

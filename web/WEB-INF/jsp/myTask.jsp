@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
-  User: lenovo
+  User: swx
   Date: 2020/11/8
   Time: 14:47
   To change this template use File | Settings | File Templates.
@@ -83,38 +83,40 @@
             <table class="table table-hover table-striped">
                 <thead>
                 <tr>
-                    <th>任务内容</th>
-                    <th width="300px">进度</th>
+                    <th>任务名称</th>
+                    <th width="300px" style="vertical-align: middle;text-align: center;">进度</th>
                     <th style="vertical-align: middle !important;text-align: center;">截止时间</th>
                     <th style="vertical-align: middle !important;text-align: center;">优先级</th>
+                    <th style="vertical-align: middle !important;text-align: center;">操作</th>
                 </tr>
                 </thead>
 
                 <tbody>
                 <c:forEach var="task" items="${tasks}">
                     <tr>
-                        <td>${task.taskName}</td>
-                        <td>
-                            <div class="progress">
+                        <td style="vertical-align: middle">${task.taskName}</td>
+                        <td style="vertical-align: middle;">
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="${task.taskProgress}" aria-valuemin="0" aria-valuemax="100" style="width: ${task.taskProgress}%">
                                     ${task.taskProgress}%
                                     </div>
                                 </div>
-                        </div>
                         </td>
-                        <td align="center">${task.endTime}</td>
+                        <td style="vertical-align: middle ;text-align: center;">${task.endTime}</td>
                         <c:choose>
                             <c:when test="${task.priority==0}">
-                                <td align="center" style="color: deepskyblue; font-size: larger">一般</td>
+                                <td style="vertical-align: middle ;text-align: center; color: deepskyblue; font-size: larger">一般</td>
                             </c:when>
                             <c:when test="${task.priority==1}">
-                                <td align="center" style="color: gold; font-size: larger">重要</td>
+                                <td style="vertical-align: middle ;text-align: center;color: gold; font-size: larger">重要</td>
                             </c:when>
                             <c:when test="${task.priority==2}">
-                                <td align="center" style="color: red; font-size: larger">紧急</td>
+                                <td style="vertical-align: middle ;text-align: center; color: red; font-size: larger">紧急</td>
                             </c:when>
                         </c:choose>
+                        <td style="vertical-align: middle;text-align: center;">
+                            <a href="${pageContext.request.contextPath}/task/taskDetail/${task.taskId}" class="btn btn-default active" role="button">查看详情</a>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
