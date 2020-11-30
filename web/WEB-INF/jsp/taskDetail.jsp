@@ -54,6 +54,12 @@
                         日历
                     </a>
                 </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/log/mylog/${userID}">
+                        <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+                        日志
+                    </a>
+                </li>
                 <li class="divider">
                 </li>
                 <li>
