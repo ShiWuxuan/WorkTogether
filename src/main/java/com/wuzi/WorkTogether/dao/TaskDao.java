@@ -1,5 +1,6 @@
 package com.wuzi.WorkTogether.dao;
 
+import com.wuzi.WorkTogether.domain.SubTask;
 import com.wuzi.WorkTogether.domain.Task;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -26,9 +27,21 @@ public interface TaskDao {
     @Select("select * from task where memberId=#{userId} and taskName like '%${keyword}%'")
     public List<Task> queryTaskByKeyword(@Param("userId") Integer userId,@Param("keyword") String keyword);
 
+    @Select("select taskProgress from task where taskId=#{taskId}")
+    public Integer queryTaskProgress(Integer taskId);
+
+    @Select("select taskName from task where taskId=#{taskId}")
+    public String queryTaskName(Integer taskId);
+
+    @Select("select * from subtask where taskId=#{taskId}")
+    public List<SubTask> querySubTask(Integer taskId);
+
     @Insert("insert into task (teamId,taskName,memberId,endTime)values(#{teamId},#{taskName},#{memberId},#{endTime})")
     public void addTask(Task task);
 
-    @Update("update task set taskProgress=#{taskProgress} where taskId=#{taskId}")
-    public void updateTaskProgress(Task task);
+    @Update("update task set taskProgress=#{progress} where taskId=#{id}")
+    public void updateTaskProgress(@Param("id")Integer taskId,@Param("progress")Integer progress);
+
+    @Update("update subtask set isComplete=1 where taskId=#{taskId} and subTaskId=#{subTaskId}")
+    public void completeSubTask(@Param("taskId") Integer taskId,@Param("subTaskId") Integer subTaskId);
 }

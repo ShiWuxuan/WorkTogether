@@ -7,17 +7,15 @@ import lombok.NoArgsConstructor;
 /**
  * @author 施武轩
  * @version 1.0
- * @date 2020/11/8 15:06
+ * @date 2020/11/30 15:24
  * @lastEditor
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TaskDto {
-    private Integer taskId;
-    private String teamId;
-    private String taskName;
-    private String endTime;
-    private Integer taskProgress;
-    private Integer priority;
+public class SubTaskDto {
+    private Integer subTaskId;
+    private String content;
+    private Integer weight;
+    private Boolean isComplete;
 }

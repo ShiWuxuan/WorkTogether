@@ -1,6 +1,8 @@
 package com.wuzi.WorkTogether.service;
 
+import com.wuzi.WorkTogether.domain.SubTask;
 import com.wuzi.WorkTogether.domain.Task;
+import com.wuzi.WorkTogether.domain.dto.SubTaskDto;
 import com.wuzi.WorkTogether.domain.dto.TaskDto;
 
 import java.util.List;
@@ -14,11 +16,19 @@ import java.util.List;
 public interface TaskService {
     public List<TaskDto> queryAllTaskByUser(Integer userId);
 
-    public List<Task> queryAllTaskByTeam(Integer teamId);
+    public List<TaskDto> queryAllTaskByTeam(Integer teamId);
 
     public void addTask(Task task);
 
-    public void updateTaskProgress(Task task);
+//    public void updateTaskProgress(Task task);
 
     public List<TaskDto> queryTaskByKeyword(Integer userId,String keyword);
+
+    public List<SubTaskDto> querySubTask(Integer taskId);
+
+    public String queryTaskName(Integer taskId);
+
+    public Integer queryTaskProgress(Integer taskId);
+
+    public List<SubTaskDto> completeTask(Integer taskId,Integer subTaskId);
 }
