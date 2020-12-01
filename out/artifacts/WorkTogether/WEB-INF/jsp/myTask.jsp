@@ -112,7 +112,7 @@
                                 <td align="center" style="color: gold; font-size: larger">重要</td>
                             </c:when>
                             <c:when test="${task.priority==2}">
-                                <td align="center" style="color: red; font-size: larger">紧急</td>
+                                <td align="center" style="color: #ff0000; font-size: larger">紧急</td>
                             </c:when>
                         </c:choose>
                     </tr>

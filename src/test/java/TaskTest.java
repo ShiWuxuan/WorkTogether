@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.List;
+
 /**
  * @author 施武轩
  * @version 1.0
@@ -12,6 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @lastEditor
  */
 public class TaskTest {
+
 
     @Test
     public void addTest(){
@@ -24,6 +27,7 @@ public class TaskTest {
 //        task.setEndTime(new Date());
         taskDao.addTask(task);
     }
+
 
     @Test
     public void queryTest(){
