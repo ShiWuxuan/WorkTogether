@@ -7,10 +7,16 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>WorkTogether</title>
+</head>
+<body>
+
+  <table style="margin-top:15%"  align="center">
+    <tr>
+      <td><input style="width: 56px" type="button" value="去登录" onclick = "window.location.href='${pageContext.request.contextPath}/user/toLogin'"/></td>
+    </tr>
+  </table>
+</body>
 </html>
