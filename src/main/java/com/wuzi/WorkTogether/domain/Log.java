@@ -19,7 +19,7 @@ public class Log {
     private Integer logId;
     private String teamId;
     private Integer memberId;
-    private Integer logType;//0:日志;1:周志;2:阶段总结;
+    private Integer logType; //0:日志;1:周志;2:阶段总结;
     private Date submitTime;
     private String logTitle;
     private String logContent;
