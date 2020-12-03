@@ -47,8 +47,8 @@ public interface LogDao {
      * 创建新的log
      * @param log
      */
-    @Insert("insert into log (teamId,logName,memberId,logType,submitTime)" +
-            "values(#{teamId},#{logName},#{memberId},#{logType},#{submitTime})")
+    @Insert("insert into log (teamId,logTitle,memberId,logType,logContent,submitTime)" +
+            "values(#{teamId},#{logTitle},#{memberId},#{logType},#{logContent},#{submitTime})")
     void addLog(Log log);
 
     /**
@@ -60,4 +60,11 @@ public interface LogDao {
     @Select("select * from log where memberId=#{userId} and logTitle like '%${keyword}%'")
     List<Log> queryLogByKeyword(@Param("userId") Integer userId, @Param("keyword") String keyword);
 
+    /**
+     * 根据logId获取对应唯一log
+     * @param logId
+     * @return
+     */
+    @Select("select * from log where logId=#{logId}")
+    Log queryLogByLogid(@Param("logId") Integer logId);
 }

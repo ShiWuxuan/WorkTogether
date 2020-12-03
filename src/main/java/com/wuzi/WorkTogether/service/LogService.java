@@ -22,4 +22,6 @@ public interface LogService {
     void addLog(Log log);
 
     List<LogDto> queryLogByKeyword(Integer userId, String keyword);
+
+    LogDto queryLogByLogid(Integer logId);
 }

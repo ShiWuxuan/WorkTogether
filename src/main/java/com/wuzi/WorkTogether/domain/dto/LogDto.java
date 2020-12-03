@@ -16,6 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LogDto {
+    private Integer logId;
     private String teamId;
     private Integer logType;//0:日志;1:周志;2:阶段总结;
     private String submitTime;
