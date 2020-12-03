@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+<<<<<<< HEAD
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>WorkTogether</title>
@@ -20,5 +21,11 @@
     </tr>
   </table>
 
+=======
+    <title>Title</title>
+</head>
+<body>
+
+>>>>>>> 62a8bf6f03d8097b4a83380c1476f79e63a90474
 </body>
 </html>

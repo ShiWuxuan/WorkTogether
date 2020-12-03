@@ -105,13 +105,16 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-6 column">
+            <div class="col-md-4 column">
                 <form class="form-inline" action="${pageContext.request.contextPath}/log/keyLogs/${userId}" method="post" align="center">
                     <input type="text" name="keyword" class="form-control" placeholder="输入标题进行查询"/>
                     <button type="submit" class="btn btn-default active">查找</button>
                 </form>
             </div>
-            <table class="table table-striped">
+            <div class="col-md-2 column">
+                <a href="${pageContext.request.contextPath}/log/addLog/${userId}" class="btn btn-default active" role="button">写心得</a>
+            </div>
+            <table class="table table-hover">
                 <thead>
                 <tr>
                     <th>
@@ -162,7 +165,7 @@
                             </c:when>
                         </c:choose>
                         <td>
-                            <a href="#">查看</a>
+                            <a href="${pageContext.request.contextPath}/log/logDetail/${userId}/${log.logId}">查看</a>
                         </td>
                     </tr>
                 </c:forEach>

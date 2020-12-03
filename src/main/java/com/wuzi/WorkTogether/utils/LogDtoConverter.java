@@ -19,6 +19,7 @@ public class LogDtoConverter {
         List<LogDto> ansLogs = new ArrayList<>();
         for (Log l : logs){
             LogDto logDto = new LogDto();
+            logDto.setLogId(l.getLogId());
             logDto.setTeamId(l.getTeamId());
             logDto.setLogContent(l.getLogContent());
             logDto.setLogTitle(l.getLogTitle());
