@@ -122,7 +122,7 @@
                             </c:when>
                         </c:choose>
                         <td style="vertical-align: middle;text-align: center;">
-                            <a href="${pageContext.request.contextPath}/task/taskDetail/${task.taskId}" class="btn btn-default active" role="button">查看详情</a>
+                            <a href="${pageContext.request.contextPath}/task/taskDetail/${task.taskId}" class="btn btn-info" role="button">查看详情</a>
                         </td>
                     </tr>
                 </c:forEach>

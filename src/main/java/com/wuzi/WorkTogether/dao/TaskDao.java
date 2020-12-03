@@ -2,10 +2,7 @@ package com.wuzi.WorkTogether.dao;
 
 import com.wuzi.WorkTogether.domain.SubTask;
 import com.wuzi.WorkTogether.domain.Task;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -36,8 +33,12 @@ public interface TaskDao {
     @Select("select * from subtask where taskId=#{taskId}")
     public List<SubTask> querySubTask(Integer taskId);
 
-    @Insert("insert into task (teamId,taskName,memberId,endTime)values(#{teamId},#{taskName},#{memberId},#{endTime})")
+    @Insert("insert into task (teamId,taskName,memberId,endTime,priority)values(#{teamId},#{taskName},#{memberId},#{endTime},#{priority})")
+    @Options(useGeneratedKeys=true, keyProperty="taskId", keyColumn="taskId")
     public void addTask(Task task);
+
+    @Insert("insert into subtask (taskId,subTaskId,content,weight)values(#{taskId},#{subTaskId},#{content},#{weight})")
+    public void addSubTask(SubTask subTask);
 
     @Update("update task set taskProgress=#{progress} where taskId=#{id}")
     public void updateTaskProgress(@Param("id")Integer taskId,@Param("progress")Integer progress);
