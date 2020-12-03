@@ -12,6 +12,8 @@ import java.util.List;
 public interface UserService {
 
     public int registerUser(User user);
-    public User loginUser(String userName,String userPwd);
+    public User loginUser(String userTel,String userPwd);
     public List<User> findAllUser();
+    public boolean testUserTel(String userTel);
+    public boolean changeUserName(String userName,String userTel);
 }

@@ -118,11 +118,7 @@
                                 <td style="vertical-align: middle ;text-align: center;color: gold; font-size: larger">重要</td>
                             </c:when>
                             <c:when test="${task.priority==2}">
-<<<<<<< HEAD
-                                <td align="center" style="color: #ff0000; font-size: larger">紧急</td>
-=======
                                 <td style="vertical-align: middle ;text-align: center; color: red; font-size: larger">紧急</td>
->>>>>>> 1fb27c70791091f91b6d1d5d7074eceb0c520b29
                             </c:when>
                         </c:choose>
                         <td style="vertical-align: middle;text-align: center;">

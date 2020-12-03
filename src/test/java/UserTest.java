@@ -23,18 +23,29 @@ public class UserTest {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserService userService = (UserService) context.getBean("userServiceImpl");
         userService.loginUser("321","123");
-        userService.loginUser("123","123");
-        userService.loginUser("123","123321");
+        userService.loginUser("18801896987","123");
+        userService.loginUser("18801896987","123321");
+    }
+
+    @Test
+    public void testChangeName(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserService userService = (UserService) context.getBean("userServiceImpl");
+        System.out.println(userService.changeUserName("123","13888888888"));
+        System.out.println(userService.changeUserName("ken","13888888888"));
     }
 
     @Test
     public void testFind(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserService userService = (UserService) context.getBean("userServiceImpl");
-        List<User> users = userService.findAllUser();
-        for(User user : users)
-        {
-            System.out.println(user);
-        }
+    }
+
+    @Test
+    public void testTel(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserService userService = (UserService) context.getBean("userServiceImpl");
+        System.out.println(userService.testUserTel("1234"));
+        System.out.println(userService.testUserTel("13688888888"));
     }
 }

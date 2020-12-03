@@ -12,21 +12,18 @@
     <title>WorkTogether</title>
 </head>
 <body>
-
+<header align="center"><img src="${pageContext.request.contextPath}/img/logo.png" class="img-responsive" alt="加载失败" style="width: 300px;height: 300px"></header>
 <form action="${pageContext.request.contextPath}/user/register" method="post">
-    <table style="margin-top:15%"  align="center">
+    <table align="center">
         <tr>
-            <td>用户名:</td>
-            <td><input id="userName" name="userName" type="text"/></td>
+        <td>手机号:</td>
+        <td><input id="userTel" name="userTel" type="text"/></td>
         </tr>
         <tr>
             <td>密码:</td>
-            <td><input id="userPwd" name="userPwd" type="password"/></td>
+            <td style="height: 50px"><input id="userPwd" name="userPwd" placeholder="请输入至少8位的密码" type="password"/></td>
         </tr>
-        <tr>
-            <td>手机号:</td>
-            <td><input id="userTel" name="userTel" type="text"/></td>
-        </tr>
+
         <tr>
             <td><input style="width: 56px" type="submit" value="注册"/></td>
             <td align="right"><input type="button" style="width: 56px;height: 24px" value="返回" onclick="window.location.href='${pageContext.request.contextPath}/user/toLogin'"/>
