@@ -62,4 +62,18 @@ public class LogServiceImpl implements LogService {
         ansLogs = LogDtoConverter.convert(oriLog);
         return ansLogs;
     }
+
+    @Override
+    public LogDto queryLogByLogid(Integer logId) {
+        Log l = logDao.queryLogByLogid(logId);
+        LogDto logDto = new LogDto();
+        logDto.setLogId(l.getLogId());
+        logDto.setTeamId(l.getTeamId());
+        logDto.setLogContent(l.getLogContent());
+        logDto.setLogTitle(l.getLogTitle());
+        logDto.setLogType(l.getLogType());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        logDto.setSubmitTime(sdf.format(l.getSubmitTime()));
+        return logDto;
+    }
 }
