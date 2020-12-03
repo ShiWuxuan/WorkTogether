@@ -74,6 +74,7 @@
             <div class="page-header">
                 <h1>我的任务</h1>
             </div>
+            <a href="${pageContext.request.contextPath}/task/gotoAddNewTask" class="btn btn-default active" role="button">新增任务</a>
             <div class="col-md-2 column">
                 <a href="${pageContext.request.contextPath}/task/myUrgentTask/${userId}" class="btn btn-default active" role="button">显示紧急任务</a>
             </div>
