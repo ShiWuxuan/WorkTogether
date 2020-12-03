@@ -27,7 +27,7 @@
     <div class="row-fluid">
         <div class="col-md-2 column">
             <div class="page-header">
-                <img src="../img/ToDoTeam.JPG" class="img-responsive" alt="加载失败">
+                <img src="${pageContext.request.contextPath}/img/logo.png" class="img-responsive" alt="加载失败">
             </div>
             <ul class="nav nav-list">
                 <li class="nav-header">
