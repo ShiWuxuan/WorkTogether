@@ -20,6 +20,8 @@ public interface TaskService {
 
     public void addTask(Task task);
 
+    public void addSubTask(SubTask subTask);
+
 //    public void updateTaskProgress(Task task);
 
     public List<TaskDto> queryTaskByKeyword(Integer userId,String keyword);

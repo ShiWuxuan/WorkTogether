@@ -1,5 +1,6 @@
 package com.wuzi.WorkTogether.controller;
 
+import com.wuzi.WorkTogether.domain.SubTask;
 import com.wuzi.WorkTogether.domain.Task;
 import com.wuzi.WorkTogether.domain.dto.SubTaskDto;
 import com.wuzi.WorkTogether.domain.dto.TaskDto;
@@ -9,8 +10,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.Resource;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +30,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/task")
 public class TaskController {
+    private List<SubTask> tempSubTaskList = new  ArrayList<>();
+
     @Resource
     private TaskService taskService;
 
@@ -32,15 +42,37 @@ public class TaskController {
         return "myTask";
     }
 
-    @RequestMapping("/gotoAddTask")
+    @RequestMapping("/gotoAddNewTask")
     public String gotoAddTask(){
+        tempSubTaskList.clear();
         return "addTask";
     }
 
-    @RequestMapping("/addTask/{task}")
-    public String addTask(@PathVariable Task task){
+    @RequestMapping("/gotoAddTask")
+    public String gotoAddTask(Model model){
+        model.addAttribute("tempList",tempSubTaskList);
+        return "addTask";
+    }
+
+    @RequestMapping("/addSubTask")
+    public String addSubTask(Model model,String content, Integer weight){
+        SubTask subTask = new SubTask();
+        subTask.setSubTaskId(tempSubTaskList.size()+1);
+        subTask.setContent(content);
+        subTask.setWeight(weight);
+        tempSubTaskList.add(subTask);
+        return "redirect:/task/gotoAddTask";
+    }
+
+    @RequestMapping("/addTask")
+    public String addTask(Task task){
         taskService.addTask(task);
-        return "redirect:myTask";
+        for (SubTask t:tempSubTaskList){
+            t.setTaskId(task.getTaskId());
+            taskService.addSubTask(t);
+        }
+        tempSubTaskList.clear();
+        return "redirect:/task/gotoAddTask";
     }
 
     @RequestMapping("/taskDetail/{taskId}")

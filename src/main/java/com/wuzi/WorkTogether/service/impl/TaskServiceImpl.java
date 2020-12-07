@@ -53,6 +53,11 @@ public class TaskServiceImpl implements TaskService {
         taskDao.addTask(task);
     }
 
+    @Override
+    public void addSubTask(SubTask subTask){
+        taskDao.addSubTask(subTask);
+    }
+
 //    @Override
 //    public void updateTaskProgress(Task task) {
 //        taskDao.updateTaskProgress(task);
@@ -118,8 +123,7 @@ public class TaskServiceImpl implements TaskService {
                 dto.setEndTime("无");
             }
             else {
-                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                dto.setEndTime(sdf.format(t.getEndTime()));
+                dto.setEndTime(t.getEndTime());
             }
             dto.setTaskId(t.getTaskId());
             dto.setTaskProgress(t.getTaskProgress());

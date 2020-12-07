@@ -103,7 +103,7 @@
                         </c:when>
                         <c:when test="${subtask.isComplete==false}">
                         <td style="vertical-align: middle;text-align: center;">
-                            <a href="${pageContext.request.contextPath}/task/completeSubTask/${taskId}/${subtask.subTaskId}" class="btn btn-default active" role="button">完成</a>
+                            <a href="${pageContext.request.contextPath}/task/completeSubTask/${taskId}/${subtask.subTaskId}" class="btn btn-info" role="button">完成</a>
                         </td>
                         </c:when>
                         </c:choose>

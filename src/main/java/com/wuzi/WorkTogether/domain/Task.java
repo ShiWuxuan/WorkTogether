@@ -20,7 +20,7 @@ public class Task {
     private String teamId;
     private String taskName;
     private Integer memberId;
-    private Date endTime;
+    private String endTime;
     private Integer taskProgress;
     private Integer priority;
 }
