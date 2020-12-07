@@ -12,11 +12,12 @@ public class UserTest {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserService userService = (UserService) context.getBean("userServiceImpl");
         User user = new User();
-        user.setUserName("1234");
-        user.setUserPwd("123321");
-        user.setUserTel("18801896987");
+        user.setUserName("12345");
+        user.setUserPwd("12344321");
+        user.setUserTel("18801896988");
         userService.registerUser(user);
     }
+
 
     @Test
     public void testLogin(){

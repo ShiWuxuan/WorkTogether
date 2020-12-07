@@ -8,24 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-<<<<<<< HEAD
-
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>WorkTogether</title>
+  <title>Title</title>
 </head>
 <body>
 
-  <table style="margin-top:15%"  align="center">
-    <tr>
-      <td><input style="width: 56px" type="button" value="去登录" onclick = "window.location.href='${pageContext.request.contextPath}/user/toLogin'"/></td>
-    </tr>
-  </table>
-
-=======
-    <title>Title</title>
-</head>
-<body>
-
->>>>>>> 62a8bf6f03d8097b4a83380c1476f79e63a90474
 </body>
 </html>

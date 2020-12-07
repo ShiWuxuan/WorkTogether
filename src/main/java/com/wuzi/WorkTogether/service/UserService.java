@@ -1,6 +1,7 @@
 package com.wuzi.WorkTogether.service;
 
 import com.wuzi.WorkTogether.domain.User;
+import com.wuzi.WorkTogether.domain.dto.UserDto;
 
 import java.util.List;
 /**

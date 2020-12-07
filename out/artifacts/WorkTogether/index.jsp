@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: lenovo
@@ -7,7 +8,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<<<<<<< HEAD
 <head>
   <!--2秒后跳转到登录页面-->
   <meta http-equiv="refresh" content="2; url=${pageContext.request.contextPath}/user/toLogin" />
@@ -15,18 +15,10 @@
 </head>
 <body>
 
-  <table style="margin-top:15%"  align="center">
-    <tr>
-      <td><input style="width: 56px" type="button" value="去登录" onclick = "window.location.href='${pageContext.request.contextPath}/user/toLogin'"/></td>
-    </tr>
-  </table>
+<table style="margin-top:15%"  align="center">
+  <tr>
+    <td><input style="width: 56px" type="button" value="去登录" onclick = "window.location.href='${pageContext.request.contextPath}/user/toLogin'"/></td>
+  </tr>
+</table>
 </body>
-=======
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
->>>>>>> 62a8bf6f03d8097b4a83380c1476f79e63a90474
 </html>

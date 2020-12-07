@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: lenovo
@@ -14,10 +15,10 @@
 </head>
 <body>
 
-  <table style="margin-top:15%"  align="center">
-    <tr>
-      <td><input style="width: 56px" type="button" value="去登录" onclick = "window.location.href='${pageContext.request.contextPath}/user/toLogin'"/></td>
-    </tr>
-  </table>
+<table style="margin-top:15%"  align="center">
+  <tr>
+    <td><input style="width: 56px" type="button" value="去登录" onclick = "window.location.href='${pageContext.request.contextPath}/user/toLogin'"/></td>
+  </tr>
+</table>
 </body>
 </html>
