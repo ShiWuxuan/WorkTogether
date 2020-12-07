@@ -15,6 +15,7 @@
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -78,7 +79,7 @@
                     <h3>团队：</h3>
                 </div>
                 <div>
-                    <button id="submitTask" type="submit" class="btn btn-warning btn-lg" onclick="addTask()">提交任务</button>
+                <button id="submitTask" type="submit" class="btn btn-warning btn-lg" onclick="addTask()">提交任务</button>
                 </div>
             </div>
             <form>
@@ -94,33 +95,33 @@
                         <option value="2">紧急</option>
                     </select>
                 </div>
-                <div class="form-group" >
+                    <div class="form-group" >
 
-                    <label>选择任务截止时间：</label>
+                        <label>选择任务截止时间：</label>
 
-                    <!--指定 date标记-->
+                        <!--指定 date标记-->
 
-                    <div class='input-group date' id="datetimepicker">
+                        <div class='input-group date' id="datetimepicker">
 
-                        <input id="endTimeInput" type='text' class="form-control" style="width: 200px" />
+                            <input id="endTimeInput" type='text' class="form-control" style="width: 200px" />
 
-                        <span class="input-group-addon" style="float: left;width: 60px;height: 34px">
+                            <span class="input-group-addon" style="float: left;width: 60px;height: 34px">
 
                     <span class="glyphicon glyphicon-calendar"></span>
 
                 </span>
 
-                    </div>
+                        </div>
 
-                </div>
-                <script type="text/javascript">
-                    $(function () {
-                        $('#datetimepicker').datetimepicker({
-                            format: 'YYYY-MM-DD hh:mm',
-                            locale: moment.locale('zh-cn')
-                        });
-                    });
-                </script>
+                    </div>
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#datetimepicker').datetimepicker({
+                                    format: 'YYYY-MM-DD hh:mm',
+                                locale: moment.locale('zh-cn')
+                            });
+                            });
+                        </script>
             </form>
             <script>
                 function addTask() {
@@ -145,7 +146,7 @@
 
 
             <div style="margin-bottom: 40px">
-                <button class="btn btn-info" data-toggle="modal" data-target="#myModal" >添加子任务</button>
+            <button class="btn btn-info" data-toggle="modal" data-target="#myModal" >添加子任务</button>
             </div>
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -193,30 +194,30 @@
             </div>
 
             <div class="col-md-8 column">
-                <table class="table table-hover table-striped">
-                    <thead>
+            <table class="table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th style="vertical-align: middle !important;text-align: center;">序号</th>
+                    <th style="vertical-align: middle !important;text-align: center;">任务内容</th>
+                    <th style="vertical-align: middle !important;text-align: center;">占比</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <c:forEach var="temp" items="${tempList}">
                     <tr>
-                        <th style="vertical-align: middle !important;text-align: center;">序号</th>
-                        <th style="vertical-align: middle !important;text-align: center;">任务内容</th>
-                        <th style="vertical-align: middle !important;text-align: center;">占比</th>
+                        <td style="vertical-align: middle;text-align: center">${temp.subTaskId}</td>
+
+                        <td style="vertical-align: middle ;text-align: center;">${temp.content}</td>
+
+                        <td style="vertical-align: middle ;text-align: center;">${temp.weight}%</td>
                     </tr>
-                    </thead>
-
-                    <tbody>
-                    <c:forEach var="temp" items="${tempList}">
-                        <tr>
-                            <td style="vertical-align: middle;text-align: center">${temp.subTaskId}</td>
-
-                            <td style="vertical-align: middle ;text-align: center;">${temp.content}</td>
-
-                            <td style="vertical-align: middle ;text-align: center;">${temp.weight}%</td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
+                </c:forEach>
+                </tbody>
+            </table>
         </div>
-    </div>
+        </div>
+</div>
 
 
 </body>

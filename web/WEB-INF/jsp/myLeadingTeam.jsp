@@ -13,7 +13,6 @@
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<%--因为如果把script写在c:forEach中会导致按钮功能覆盖，所以将方法体写在开头，在表格中显式调用--%>
 <script>
     function changeTeamNumberLimit(teamId)
     {
