@@ -1,6 +1,7 @@
 package com.wuzi.WorkTogether.service.impl;
 
 import com.wuzi.WorkTogether.dao.PostDao;
+import com.wuzi.WorkTogether.dao.UserDao;
 import com.wuzi.WorkTogether.domain.Post;
 import com.wuzi.WorkTogether.domain.Record;
 import com.wuzi.WorkTogether.domain.dto.PageDto;
@@ -11,7 +12,6 @@ import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,9 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
     @Autowired
     private PostDao postDao;
+
+    @Autowired
+    private UserDao userDao;
 
     /**
      * 获取一页帖子的内容
@@ -48,8 +51,7 @@ public class PostServiceImpl implements PostService {
             dto.setTitle(p.getTitle());
             dto.setTime(p.getTime());
             dto.setDetail(p.getDetail());
-            //Todo 查询用户姓名
-            dto.setUserName("UZI");
+            dto.setUserName(userDao.getUserNameById(p.getUserId()));
             postDtoList.add(dto);
         }
         pageDto.setPostList(postDtoList);
@@ -79,8 +81,7 @@ public class PostServiceImpl implements PostService {
             dto.setContent(r.getContent());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             dto.setTime(sdf.format(r.getTime()));
-            //Todo 查询用户姓名
-            dto.setUserName("歪比巴卜");
+            dto.setUserName(userDao.getUserNameById(r.getUserId()));
             recordDtoList.add(dto);
         }
         return recordDtoList;

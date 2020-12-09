@@ -10,6 +10,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -49,17 +50,18 @@ public class UserController {
      * @throws InterruptedException
      */
     @RequestMapping("/checkLogin")
-    public ModelAndView checkLogin(ModelAndView modelAndView, String userTel, String userPwd, HttpServletResponse response) throws IOException, InterruptedException {
+    public ModelAndView checkLogin(ModelAndView modelAndView, String userTel, String userPwd, HttpServletResponse response, HttpSession session) throws IOException, InterruptedException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         User user = userService.loginUser(userTel,userPwd);
         if (user != null)
         {
-//            Integer userId = user.getUserId();
+            Integer userId = user.getUserId();
 //            RedirectView redirectView = new RedirectView("/WorkTogether/task/myTask/{userId}");
             RedirectView redirectView = new RedirectView("/WorkTogether/team/myTeam/{userTel}");
             modelAndView.setView(redirectView);
-//            modelAndView.addObject("userId", userId);
+            session.setAttribute("userID",userId);
+            modelAndView.addObject("userId", userId);
             modelAndView.addObject("userTel", userTel);
         }
         else {

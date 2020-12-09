@@ -7,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:set var="userID" value="1"></c:set>
+<c:set var="userID" value="${sessionScope.userID}"></c:set>
 <html>
 <head>
     <title>论坛社区</title>

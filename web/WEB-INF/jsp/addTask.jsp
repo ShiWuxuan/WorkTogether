@@ -7,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:set var="userID" value="1"></c:set>
+<c:set var="userID" value="${useId}" scope="session"></c:set>
 <c:set var="teamID" value="2"></c:set>
 <html>
 <head>
