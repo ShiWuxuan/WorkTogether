@@ -18,7 +18,7 @@
 
 <html>
 <head>
-    <title>Work Together</title>
+    <title>我的任务列表</title>
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -63,6 +63,12 @@
                 <li class="divider">
                 </li>
                 <li>
+                    <a href="${pageContext.request.contextPath}/post/AllPost/1">
+                        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                        论坛
+                    </a>
+                </li>
+                <li>
                     <a href="#">
                         <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
                         帮助
@@ -74,7 +80,7 @@
             <div class="page-header">
                 <h1>我的任务</h1>
             </div>
-            <a href="${pageContext.request.contextPath}/task/gotoAddNewTask" class="btn btn-default active" role="button">新增任务</a>
+            <a href="${pageContext.request.contextPath}/task/gotoAddTask" class="btn btn-default active" role="button">新增任务</a>
             <div class="col-md-2 column">
                 <a href="${pageContext.request.contextPath}/task/myUrgentTask/${userId}" class="btn btn-default active" role="button">显示紧急任务</a>
             </div>

@@ -62,6 +62,12 @@
                 <li class="divider">
                 </li>
                 <li>
+                    <a href="${pageContext.request.contextPath}/post/AllPost/1">
+                        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                        论坛
+                    </a>
+                </li>
+                <li>
                     <a href="#">
                         <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
                         帮助

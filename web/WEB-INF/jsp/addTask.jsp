@@ -64,6 +64,12 @@
                 <li class="divider">
                 </li>
                 <li>
+                    <a href="${pageContext.request.contextPath}/post/AllPost/1">
+                        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                        论坛
+                    </a>
+                </li>
+                <li>
                     <a href="#">
                         <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
                         帮助
@@ -95,23 +101,14 @@
                     </select>
                 </div>
                     <div class="form-group" >
-
                         <label>选择任务截止时间：</label>
-
                         <!--指定 date标记-->
-
                         <div class='input-group date' id="datetimepicker">
-
                             <input id="endTimeInput" type='text' class="form-control" style="width: 200px" />
-
                             <span class="input-group-addon" style="float: left;width: 60px;height: 34px">
-
                     <span class="glyphicon glyphicon-calendar"></span>
-
                 </span>
-
                         </div>
-
                     </div>
                         <script type="text/javascript">
                             $(function () {
@@ -216,6 +213,7 @@
             </table>
         </div>
         </div>
+</div>
 </div>
 
 

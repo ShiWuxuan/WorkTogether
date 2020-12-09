@@ -42,11 +42,11 @@ public class TaskController {
         return "myTask";
     }
 
-    @RequestMapping("/gotoAddNewTask")
-    public String gotoAddTask(){
-        tempSubTaskList.clear();
-        return "addTask";
-    }
+//    @RequestMapping("/gotoAddNewTask")
+//    public String gotoAddTask(){
+//        tempSubTaskList.clear();
+//        return "addTask";
+//    }
 
     @RequestMapping("/gotoAddTask")
     public String gotoAddTask(Model model){
@@ -61,18 +61,27 @@ public class TaskController {
         subTask.setContent(content);
         subTask.setWeight(weight);
         tempSubTaskList.add(subTask);
-        return "redirect:/task/gotoAddTask";
+        return "addTask";
     }
 
     @RequestMapping("/addTask")
     public String addTask(Task task){
         taskService.addTask(task);
+        int totalWeight = 0;
+        for (SubTask t:tempSubTaskList) {
+            totalWeight+=t.getWeight();
+        }
+
         for (SubTask t:tempSubTaskList){
+            if (totalWeight!=100){
+                t.setWeight((t.getWeight()*100)/totalWeight);
+            }
             t.setTaskId(task.getTaskId());
             taskService.addSubTask(t);
         }
         tempSubTaskList.clear();
-        return "redirect:/task/gotoAddTask";
+        //TODO 返回团队界面
+        return "myTask";
     }
 
     @RequestMapping("/taskDetail/{taskId}")
@@ -84,14 +93,14 @@ public class TaskController {
         return "taskDetail";
     }
 
-    @RequestMapping("/updateTask/{userId}/{progress}")
-    public String updateTask(@PathVariable Integer userId,@PathVariable Integer progress){
-        Task task = new Task();
-        task.setMemberId(userId);
-        task.setTaskProgress(progress);
-        taskService.addTask(task);
-        return "redirect:myTask";
-    }
+//    @RequestMapping("/updateTask/{userId}/{progress}")
+//    public String updateTask(@PathVariable Integer userId,@PathVariable Integer progress){
+//        Task task = new Task();
+//        task.setMemberId(userId);
+//        task.setTaskProgress(progress);
+//        taskService.addTask(task);
+//        return "redirect:myTask";
+//    }
 
 
     @RequestMapping("/myUrgentTask/{userId}")
