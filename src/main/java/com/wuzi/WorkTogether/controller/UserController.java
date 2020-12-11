@@ -56,12 +56,12 @@ public class UserController {
         User user = userService.loginUser(userTel,userPwd);
         if (user != null)
         {
-            Integer userId = user.getUserId();
-//            RedirectView redirectView = new RedirectView("/WorkTogether/task/myTask/{userId}");
+            String userId = user.getUserId().toString();
             RedirectView redirectView = new RedirectView("/WorkTogether/team/myTeam/{userTel}");
             modelAndView.setView(redirectView);
-            session.setAttribute("userID",userId);
-            modelAndView.addObject("userId", userId);
+            session.setAttribute("userId",userId);
+            session.setAttribute("userTel",userTel);
+            System.out.println(userId+","+userTel);
             modelAndView.addObject("userTel", userTel);
         }
         else {
