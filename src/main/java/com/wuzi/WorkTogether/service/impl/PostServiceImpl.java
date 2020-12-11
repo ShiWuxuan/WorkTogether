@@ -44,18 +44,7 @@ public class PostServiceImpl implements PostService {
         int startIndex = size*(page-1);
         List<Post> posts = postDao.queryPostForPage(startIndex,size);
         List<PostDto> postDtoList = new ArrayList<>();
-        for (Post p : posts){
-            PostDto dto = new PostDto();
-            dto.setId(p.getId());
-            dto.setLikeNumber(p.getLikeNumber());
-            dto.setTitle(p.getTitle());
-            dto.setTime(p.getTime());
-            dto.setDetail(p.getDetail());
-            dto.setUserName(userDao.getUserNameById(p.getUserId()));
-            postDtoList.add(dto);
-        }
-        pageDto.setPostList(postDtoList);
-        return pageDto;
+        return getPageDto(pageDto, posts, postDtoList);
     }
 
     @Override
@@ -111,5 +100,30 @@ public class PostServiceImpl implements PostService {
         else {
             return 0;
         }
+    }
+
+    @Override
+    public PageDto getMostLikePost() {
+        PageDto pageDto = new PageDto();
+        pageDto.setShowPre(false);
+        pageDto.setShowNext(false);
+        List<Post> hotPosts = postDao.queryMostLikePost();
+        List<PostDto> postDtoList = new ArrayList<>();
+        return getPageDto(pageDto, hotPosts, postDtoList);
+    }
+
+    private PageDto getPageDto(PageDto pageDto, List<Post> hotPosts, List<PostDto> postDtoList) {
+        for (Post p : hotPosts){
+            PostDto dto = new PostDto();
+            dto.setId(p.getId());
+            dto.setLikeNumber(p.getLikeNumber());
+            dto.setTitle(p.getTitle());
+            dto.setTime(p.getTime());
+            dto.setDetail(p.getDetail());
+            dto.setUserName(userDao.getUserNameById(p.getUserId()));
+            postDtoList.add(dto);
+        }
+        pageDto.setPostList(postDtoList);
+        return pageDto;
     }
 }

@@ -39,7 +39,7 @@ public class PostController {
         Integer number = postService.queryRecordNumber(postId);
         model.addAttribute("number",number);
         List<RecordDto> records = postService.queryPostDetail(postId);
-        model.addAttribute("discuss",records);
+        model.addAttribute("comments",records);
         PostDto post = postService.queryPostInfo(postId);
         model.addAttribute("postInfo",post);
         return "postDetail";
@@ -71,5 +71,12 @@ public class PostController {
             model.addAttribute("result","success");
             return "redirect:/post/AllRecord/" + post.getId();
         }
+    }
+
+    @RequestMapping("/getHotPost")
+    public String getHotPost(Model model){
+        PageDto pagination = postService.getMostLikePost();
+        model.addAttribute("pagination",pagination);
+        return "forum";
     }
 }
