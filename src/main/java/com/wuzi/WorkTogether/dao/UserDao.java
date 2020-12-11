@@ -31,6 +31,9 @@ public interface UserDao {
     @Select("select userId,userName,userTel from user where userTel = #{userTel}")
     public UserDto findUserDtoByTel(String userTel);
 
+    @Select("select userName from user where userId=#{userId}")
+    public String  getUserNameById(Integer userId);
+
     @Update("update user set teamName = #{teamName} where userTel = #{userTel} ")
     public void updateTeamByTel(@Param("userTel") String userTel, @Param("teamName") String teamName);
 

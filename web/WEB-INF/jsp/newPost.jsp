@@ -1,15 +1,16 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
-  User: 发功阿你
-  Date: 2020/12/2
-  Time: 13:46
+  User: lenovo
+  Date: 2020/12/7
+  Time: 23:34
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:set var="userID" value="${sessionScope.userID}"></c:set>
 <html>
 <head>
-    <title>工作心得</title>
-    <title>心得详情</title>
+    <title>发帖</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
@@ -43,7 +44,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/task/myTask/${userId}">
+                    <a href="${pageContext.request.contextPath}/task/myTask/${userID}">
                         <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                         我的任务
                     </a>
@@ -55,7 +56,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/log/mylog/${userId}">
+                    <a href="${pageContext.request.contextPath}/log/mylog/${userID}">
                         <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                         日志
                     </a>
@@ -79,53 +80,32 @@
         <div class="col-md-10 column">
             <div class="page-header">
                 <h1>
-                    写心得
+                    发帖
                 </h1>
             </div>
             <div>
-                <a href="${pageContext.request.contextPath}/log/mylog/${userId}" class="btn btn-default active" role="button">返回我的工作心得</a>
+                <a href="${pageContext.request.contextPath}/post/AllPost/1" class="btn btn-default active" role="button">返回论坛</a>
                 <p> </p>
             </div>
 
-            <form action="${pageContext.request.contextPath}/log/publishLog/${userId}" method="post"
-                  id="newLog" onsubmit="return submitForm();">
+            <form id="newPost" action="${pageContext.request.contextPath}/post/makePost">
                 <fieldset>
 
                     <div class="form-group">
-                        <label for="inputLogTitle">标题</label>
-                        <input type="text" class="form-control" id="inputLogTitle" name="inputLogTitle" placeholder="心得标题">
+                        <label for="inputId"></label>
+                        <input type="text" class="form-control hide" id="inputId" name="userId" value="${userID}">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTitle">标题</label>
+                        <input type="text" class="form-control" id="inputTitle" name="title" placeholder="请输入标题" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDetail">详细描述</label>
+                        <textarea class="form-control" id="inputDetail" name="detail" rows="10" required></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="inputTeam">选择项目团队</label>
-                        <select class="form-control" id="inputTeam" name="inputTeam">
-                            <option>#001</option>
-                            <option>#002</option>
-                            <option>#003</option>
-                            <option>#004</option>
-                            <option>#005</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="0"> 日志
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1"> 周志
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="2"> 月志
-                        </label>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="inputLogContent">内容</label>
-                        <textarea class="form-control" id="inputLogContent" name="inputLogContent" rows="15"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg">发表</button>
+                        <button type="submit" class="btn btn-info btn-lg" onclick="submitForm()">发表</button>
                     </div>
 
                 </fieldset>
@@ -136,30 +116,29 @@
 
 <script>
     function submitForm(){
-        var logTitle = $("#inputLogTitle").val();
-        var logContent = $("#inputLogContent").val();
-        var logType0=$("#inlineRadio1").val();
-        var logType1=$("#inlineRadio2").val();
-        var logType2=$("#inlineRadio3").val();
+        var title = $("#inputTitle").val();
+        var detail = $("#inputDetail").val();
 
-        if(logTitle === "" || logTitle == null){
-            alert("请填写心得标题");
+        if(title === "" || title == null){
+            alert("请填写标题");
             return false;
-        }else if(logContent === "" || logContent == null){
-            alert("心得内容为空");
+        }else if(detail === "" || detail == null) {
+            alert("请填写详细描述");
             return false;
-        // }else if(!(logType0 || logType1 || logType2)){
-        //     alert("请选择心得类型");
-        //     return false;
         }
-        <%--else{--%>
-        <%--    $("#newLog").ajaxSubmit(function (..) {--%>
-        <%--        var mes = JSON.parse(date);--%>
-        <%--        alert(mes.tip);--%>
-        <%--        window.location.href="${pageContext.request.contextPath}/log/mylog/${userId}";--%>
-        <%--    });--%>
-        <%--    return false;--%>
-        // }
+        <%--else {--%>
+        <%--    $.post({--%>
+        <%--        url:"${pageContext.request.contextPath}/post/makePost",--%>
+        <%--        data: {--%>
+        <%--            "title":title,--%>
+        <%--            "detail":detail,--%>
+        <%--            "userId":${userID}--%>
+        <%--        },--%>
+        <%--        success:function (data) {--%>
+        <%--            console.log(data);--%>
+        <%--        }--%>
+        <%--    })--%>
+        <%--}--%>
     }
 </script>
 

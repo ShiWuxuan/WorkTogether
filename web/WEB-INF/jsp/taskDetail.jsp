@@ -7,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:set var="userID" value="1"></c:set>
+<c:set var="userID" value="${sessionScope.userID}"></c:set>
 <%@ page import="java.io.*,java.util.*" %>
 <%
     String userIDKey = new String("userID");
@@ -61,6 +61,12 @@
                     </a>
                 </li>
                 <li class="divider">
+                </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/post/AllPost/1">
+                        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                        论坛
+                    </a>
                 </li>
                 <li>
                     <a href="#">

@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -6,6 +5,7 @@
   Time: 17:17
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -39,6 +39,12 @@
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/log/mylog/${userId}"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 日志</a>
+                </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/post/AllPost/1">
+                        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                        论坛
+                    </a>
                 </li>
                 <li class="divider">
                 </li>
@@ -85,4 +91,3 @@
     </div>
 </body>
 </html>
-
