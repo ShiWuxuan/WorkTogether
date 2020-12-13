@@ -12,10 +12,9 @@ public class UserTest {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserService userService = (UserService) context.getBean("userServiceImpl");
         User user = new User();
-        user.setUserName("12345");
         user.setUserPwd("12344321");
         user.setUserTel("18801896988");
-        userService.registerUser(user);
+        userService.registerUser("18801896988","12344321","12344321");
     }
 
 
@@ -32,8 +31,8 @@ public class UserTest {
     public void testChangeName(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserService userService = (UserService) context.getBean("userServiceImpl");
-        System.out.println(userService.changeUserName("123","13888888888"));
-        System.out.println(userService.changeUserName("ken","13888888888"));
+        System.out.println(userService.changeUserName("123",1));
+        System.out.println(userService.changeUserName("555",2));
     }
 
     @Test

@@ -36,31 +36,38 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 用户注册（用户名，手机号都不可重复，手机号得符合规定）
-     * @param user
+     * @param userTel
+     * @param userPwd
+     * @param confirmUserPwd
      * @return
      */
     @Override
-    public int registerUser(User user) {
+    public int registerUser(String userTel,String userPwd,String confirmUserPwd) {
         List<User> users = findAllUser();
-
         for(User nowUser : users)
         {
-            if (user.getUserName().equals(nowUser.getUserName()))
+            if(userTel.equals(nowUser.getUserTel()))
             {
                 return 1;
             }
-            else if(user.getUserTel().equals(nowUser.getUserTel()))
-            {
+            else if(!testUserTel(userTel)){
                 return 2;
             }
-            else if(!testUserTel(user.getUserTel())){
-                return 3;
-            }
         }
-        if(user.getUserPwd().length() < 8)
+        if(userPwd.length() < 8)
         {
+            return 3;
+        }
+        else if(!userPwd.equals(confirmUserPwd))
+        {
+            System.out.println(userPwd);
+            System.out.println(confirmUserPwd);
             return 4;
         }
+        User user = new User();
+        user.setUserName("用户"+userTel);
+        user.setUserTel(userTel);
+        user.setUserPwd(userPwd);
         userDao.addUser(user);
         return 0;
     }
@@ -100,14 +107,19 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public User findUserById(Integer userId) {
+        return userDao.findUserById(userId);
+    }
+
     /**
      * 更改用户名
      * @param userName
-     * @param userTel
+     * @param userId
      * @return
      */
     @Override
-    public boolean changeUserName(String userName, String userTel) {
+    public boolean changeUserName(String userName, Integer userId) {
         List<User> users = findAllUser();
 
         for(User nowUser : users)
@@ -117,7 +129,30 @@ public class UserServiceImpl implements UserService {
                 return false;
             }
         }
-        userDao.changeUserName(userName,userTel);
+        userDao.changeUserName(userName,userId);
         return true;
+    }
+
+    @Override
+    public Integer changeUserPwd(String userPwd, Integer userId,String newUserPwd,String confirmUserPwd) {
+        if(newUserPwd.length()<8)
+        {
+            return 1;
+        }
+        User user = userDao.findUserById(userId);
+        if(user.getUserPwd().equals(newUserPwd))
+        {
+            return 2;
+        }
+        if(!user.getUserPwd().equals(userPwd))
+        {
+            return 3;
+        }
+        if(!newUserPwd.equals(confirmUserPwd))
+        {
+            return 4;
+        }
+        userDao.changeUserPwd(newUserPwd,userId);
+        return 0;
     }
 }

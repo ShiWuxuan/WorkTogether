@@ -31,12 +31,18 @@ public interface UserDao {
     @Select("select userId,userName,userTel from user where userTel = #{userTel}")
     public UserDto findUserDtoByTel(String userTel);
 
+    @Select("select * from user where userId=#{userId}")
+    public User findUserById(Integer userId);
+
     @Select("select userName from user where userId=#{userId}")
     public String  getUserNameById(Integer userId);
 
     @Update("update user set teamName = #{teamName} where userTel = #{userTel} ")
     public void updateTeamByTel(@Param("userTel") String userTel, @Param("teamName") String teamName);
 
-    @Update("update user set userName = #{userName} where userTel = #{userTel}")
-    public void changeUserName(@Param("userName") String userName,@Param("userTel") String userTel);
+    @Update("update user set userName = #{userName} where userId = #{userId}")
+    public void changeUserName(@Param("userName") String userName,@Param("userId") Integer userId);
+
+    @Update("update user set userPwd = #{userPwd} where userId = #{userId}")
+    public void changeUserPwd(@Param("userPwd")String userPwd,@Param("userId")Integer userId);
 }
