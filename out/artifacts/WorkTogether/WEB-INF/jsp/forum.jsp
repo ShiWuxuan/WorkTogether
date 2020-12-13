@@ -81,14 +81,14 @@
                 <a href="${pageContext.request.contextPath}/post/gotoMakePost" class="btn btn-default active" role="button" style="margin-right: 15%">
                     我要发帖
                 </a>
-                <a href="" class="btn btn-default active" role="button">
+                <a href="${pageContext.request.contextPath}/post/getHotPost" class="btn btn-default active" role="button">
                     热门帖子
                 </a>
             </div>
 
             <div class="col-md-6 column">
-                <form class="form-inline" action="${pageContext.request.contextPath}/task/queryTask/${userID}" method="post" align="center">
-                    <input type="text" name="keyword" class="form-control" placeholder="请输入标题关键字"/>
+                <form class="form-inline" action="${pageContext.request.contextPath}/post/searchPost" method="post" align="center">
+                    <input type="text" name="keyword" class="form-control" placeholder="请输入关键字"/>
                     <button type="submit" class="btn btn-default active">查找</button>
                 </form>
             </div>

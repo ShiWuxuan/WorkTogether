@@ -28,4 +28,8 @@ public interface PostService {
     public void likePost(Integer postId);
 
     public Integer addPost(Post post);
+
+    public PageDto getMostLikePost();
+
+    public PageDto queryPostByKeyword(String keyword);
 }

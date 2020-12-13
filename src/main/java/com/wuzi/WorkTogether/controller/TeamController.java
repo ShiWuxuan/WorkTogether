@@ -33,6 +33,7 @@ public class TeamController {
 
     private String curUserTel;
 
+    
     /**
      * 根据不同条件显示团队（所有团队，用户的团队，用户担任队长的团队）
      * @param model

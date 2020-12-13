@@ -37,7 +37,7 @@
                     </h4>
                 </li>
                 <li class="active">
-                    <a href="${pageContext.request.contextPath}">首页</a>
+                    <a href="${pageContext.request.contextPath}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/team/myTeam/${userTel}"><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> 我的团队</a>
@@ -73,7 +73,7 @@
             </div>
 
             <div class="col-md-2 column">
-                <a href="${pageContext.request.contextPath}/task/myTask/${userID}" class="btn btn-default active" role="button">返回我的任务列表</a>
+                <a href="${pageContext.request.contextPath}/task/myTask/${userId}" class="btn btn-default active" role="button">返回我的任务列表</a>
             </div>
 
             <div class="col-md-8 column">
