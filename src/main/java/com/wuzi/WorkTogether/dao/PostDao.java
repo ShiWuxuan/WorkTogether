@@ -43,4 +43,7 @@ public interface PostDao {
 
     @Select("select * from post order by likeNumber desc limit 10")
     public List<Post> queryMostLikePost();
+
+    @Select("select * from post where title like '%${keyword}%' or detail like '%${keyword}%'")
+    public List<Post> queryPostByKeyword(String keyword);
 }

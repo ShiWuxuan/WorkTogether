@@ -87,8 +87,8 @@
             </div>
 
             <div class="col-md-6 column">
-                <form class="form-inline" action="${pageContext.request.contextPath}/task/queryTask/${userId}" method="post" align="center">
-                    <input type="text" name="keyword" class="form-control" placeholder="请输入标题关键字"/>
+                <form class="form-inline" action="${pageContext.request.contextPath}/post/searchPost" method="post" align="center">
+                    <input type="text" name="keyword" class="form-control" placeholder="请输入关键字"/>
                     <button type="submit" class="btn btn-default active">查找</button>
                 </form>
             </div>

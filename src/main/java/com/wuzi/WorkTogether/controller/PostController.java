@@ -79,4 +79,11 @@ public class PostController {
         model.addAttribute("pagination",pagination);
         return "forum";
     }
+
+    @RequestMapping("/searchPost")
+    public String searchPost(Model model,String keyword){
+        PageDto pagination = postService.queryPostByKeyword(keyword);
+        model.addAttribute("pagination",pagination);
+        return "forum";
+    }
 }

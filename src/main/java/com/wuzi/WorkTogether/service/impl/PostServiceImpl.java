@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author 施武轩
@@ -93,6 +94,9 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Integer addPost(Post post) {
+        if (Objects.isNull(post.getDetail())){
+            post.setDetail("无");
+        }
         int result = postDao.addPost(post);
         if(result>0){
             return post.getId();
@@ -110,6 +114,16 @@ public class PostServiceImpl implements PostService {
         List<Post> hotPosts = postDao.queryMostLikePost();
         List<PostDto> postDtoList = new ArrayList<>();
         return getPageDto(pageDto, hotPosts, postDtoList);
+    }
+
+    @Override
+    public PageDto queryPostByKeyword(String keyword) {
+        PageDto pageDto = new PageDto();
+        pageDto.setShowPre(false);
+        pageDto.setShowNext(false);
+        List<Post> posts = postDao.queryPostByKeyword(keyword);
+        List<PostDto> postDtoList = new ArrayList<>();
+        return getPageDto(pageDto, posts, postDtoList);
     }
 
     private PageDto getPageDto(PageDto pageDto, List<Post> hotPosts, List<PostDto> postDtoList) {

@@ -30,4 +30,6 @@ public interface PostService {
     public Integer addPost(Post post);
 
     public PageDto getMostLikePost();
+
+    public PageDto queryPostByKeyword(String keyword);
 }
