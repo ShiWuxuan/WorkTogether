@@ -14,12 +14,15 @@
     <meta name="viewpoint" content="width=device-width,initial-scale=1.0">
     <title>Event Calendar</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.css">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.js"></script>
 </head>
 
 <body>
+<<<<<<< HEAD
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="col-md-2 column">
@@ -115,6 +118,7 @@
     </div>
 </div>
 
+
 <div class="todo-overlay" id="todo-overlay">
     <div class="todo-modal" id="todo-modal">
         <div class="todo-input todo-block">
@@ -158,6 +162,7 @@
     }
 
     #todoTable {
+
         margin-top: 1rem;
     }
 

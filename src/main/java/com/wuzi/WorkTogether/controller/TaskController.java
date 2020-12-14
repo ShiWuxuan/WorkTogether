@@ -121,11 +121,9 @@ public class TaskController {
         return "taskDetail";
     }
 
-
     @RequestMapping("/todoList")
     public String todoList(){
         return "calendar";
-
     }
 }
 

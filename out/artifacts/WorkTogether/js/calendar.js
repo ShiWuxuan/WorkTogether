@@ -15,7 +15,15 @@ function todoMain() {
         shortlistBtn,
         changeBtn,
         todoTable,
+<<<<<<< HEAD
         draggingElement;
+=======
+        draggingElement/*,
+        currentPage = 1,
+        itemsPerPage = Number.parseInt(localStorage.getItem("todo-itemsPerPage")) || 5,
+        totalPages = 0,
+        itemsPerPageSelectElem*/;
+>>>>>>> 8c821ebc823b366f207d5da439087eea7f2119cb
 
     getElements();
     addListeners();
@@ -24,7 +32,10 @@ function todoMain() {
     renderRows(todoList);
     updateSelectOptions();
 
+<<<<<<< HEAD
     //获取元素
+=======
+>>>>>>> 8c821ebc823b366f207d5da439087eea7f2119cb
     function getElements() {
         inputElem = document.getElementsByTagName("input")[0];
         inputElem2 = document.getElementsByTagName("input")[1];
@@ -36,9 +47,16 @@ function todoMain() {
         shortlistBtn = document.getElementById("shortlistBtn");
         changeBtn = document.getElementById("changeBtn");
         todoTable = document.getElementById("todoTable");
+<<<<<<< HEAD
     }
 
     //加监听器
+=======
+        /*itemsPerPageSelectElem = document.getElementById("itemsPerPageSelectElem");*/
+
+    }
+
+>>>>>>> 8c821ebc823b366f207d5da439087eea7f2119cb
     function addListeners() {
         addButton.addEventListener("click", addEntry, false);
         sortButton.addEventListener("click", sortEntry, false);
@@ -49,9 +67,16 @@ function todoMain() {
         todoTable.addEventListener("dragstart", onDragstart, false);
         todoTable.addEventListener("drop", onDrop, false);
         todoTable.addEventListener("dragover", onDragover, false);
+<<<<<<< HEAD
     }
 
     //在todo-table中添加新的条目
+=======
+        /*document.addEventListener("click", onDocumentClick, false);
+        itemsPerPageSelectElem.addEventListener("change", selectItemsPerPage, false);*/
+    }
+
+>>>>>>> 8c821ebc823b366f207d5da439087eea7f2119cb
     function addEntry(event) {
         let inputValue = inputElem.value;
         inputElem.value = "";
@@ -65,7 +90,10 @@ function todoMain() {
         let timeValue = timeInput.value;
         timeInput.value = "";
 
+<<<<<<< HEAD
         //将新增的条目定义为obj对象
+=======
+>>>>>>> 8c821ebc823b366f207d5da439087eea7f2119cb
         let obj = {
             id: _uuid(),
             todo: inputValue,
@@ -75,7 +103,10 @@ function todoMain() {
             done: false,
         };
 
+<<<<<<< HEAD
         //在todo-table中画出新的条目
+=======
+>>>>>>> 8c821ebc823b366f207d5da439087eea7f2119cb
         renderRow(obj);
 
         todoList.push(obj);
@@ -83,9 +114,13 @@ function todoMain() {
         updateSelectOptions();
     }
 
+<<<<<<< HEAD
     //更新todo-table中的筛选选项
     function updateSelectOptions() {
         //option数组用来存储选项
+=======
+    function updateSelectOptions() {
+>>>>>>> 8c821ebc823b366f207d5da439087eea7f2119cb
         let options = [];
         todoList.forEach((obj) => {
             options.push(obj.category);
@@ -111,6 +146,7 @@ function todoMain() {
 
     function save() {
         let stringifier = JSON.stringify(todoList);
+<<<<<<< HEAD
         console.log(todoList);
         localStorage.setItem("todoList", stringifier);
 
@@ -132,24 +168,57 @@ function todoMain() {
                 }
             }
         );*/
+=======
+        localStorage.setItem("todoList", stringifier);
+>>>>>>> 8c821ebc823b366f207d5da439087eea7f2119cb
     }
 
     function load() {
         let retrieved = localStorage.getItem("todoList");
         todoList = JSON.parse(retrieved);
+<<<<<<< HEAD
 
         if (todoList == null) {
             todoList = [];
         }
 
+=======
+        //console.log(typeof todoList);
+        if (todoList == null) {
+            todoList = [];
+        }
+        //itemsPerPageSelectElem.value = itemsPerPage;
+>>>>>>> 8c821ebc823b366f207d5da439087eea7f2119cb
     }
 
     function renderRows(arr) {
 
 
+<<<<<<< HEAD
         arr.forEach(todoObj => {
             renderRow(todoObj);
         })
+=======
+         arr.forEach(todoObj=>{
+             renderRow(todoObj);
+         })
+
+        /*renderPageNumbers(arr);
+        currentPage = currentPage > totalPages ? totalPages : currentPage;
+
+        arr.forEach(({id, todo, date,time}) => {
+                    addEvent({
+                        id: id,
+                        title: todo,
+                        start: `${date}T${time}`,
+                    });
+                })
+
+        let slicedArr = arr.slice(itemsPerPage * (currentPage - 1), itemsPerPage * currentPage);
+        slicedArr.forEach(todoObj => {
+            renderRow(todoObj);
+        })*/
+>>>>>>> 8c821ebc823b366f207d5da439087eea7f2119cb
     }
 
     function renderRow({todo: inputValue, category: inputValue2, id, date, time, done}) {
@@ -299,7 +368,10 @@ function todoMain() {
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
+<<<<<<< HEAD
                 right:'dayGridMonth',
+=======
+>>>>>>> 8c821ebc823b366f207d5da439087eea7f2119cb
 
             },
             events: [],
@@ -603,4 +675,62 @@ function todoMain() {
         multipleFilter();
     }
 
+<<<<<<< HEAD
+=======
+    /*
+       function onDocumentClick(event) {
+            switch (event.target.dataset.pagination) {
+                case "pageNumber":
+                    currentPage = Number(event.target.innerText);
+                    break;
+                case "previousPage":
+                    currentPage = currentPage == 1 ? currentPage : currentPage - 1;
+                    break;
+                case "nextPage":
+                    currentPage = currentPage == totalPages ? currentPage : currentPage + 1;
+                    break;
+                case "firstPage":
+                    currentPage = 1;
+                    break;
+                case "lastPage":
+                    currentPage = totalPages;
+                    break;
+             default:
+            }
+            multipleFilter();
+        }
+
+        /*
+
+        function renderPageNumbers(arr) {
+            let numberOfItems = arr.length;
+            totalPages = Math.ceil(numberOfItems / itemsPerPage);
+
+            let pageNumberDiv = document.querySelector(".pagination-pages");
+
+            pageNumberDiv.innerHTML = `<span class="material-icons chevron" data-pagination="firstPage">first_page</span>`;
+
+            if (currentPage != 1) {
+                pageNumberDiv.innerHTML += `<span class="material-icons chevron" data-pagination="previousPage">chevron_left</span>`;
+            }
+
+            if (totalPages > 0) {
+                for (let i = 1; i <= totalPages; i++) {
+                    pageNumberDiv.innerHTML += `<span data-pagination="pageNumber">${i}</span>`;
+                }
+            }
+
+            if (currentPage != totalPages) {
+                pageNumberDiv.innerHTML += `<span class="material-icons chevron" data-pagination="nextPage">chevron_right</span>`;
+            }
+
+            pageNumberDiv.innerHTML += `<span class="material-icons chevron" data-pagination="lastPage">last_page</span>`;
+        }
+
+        function selectItemsPerPage(event) {
+            itemsPerPage = Number(event.target.value);
+            localStorage.setItem("todo-itemsPerPage", itemsPerPage);
+            multipleFilter();
+        }*/
+>>>>>>> 8c821ebc823b366f207d5da439087eea7f2119cb
 }

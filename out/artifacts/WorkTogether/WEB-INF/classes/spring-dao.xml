@@ -8,6 +8,7 @@
 
     <context:property-placeholder location="classpath:databases.properties"/>
 
+    <!--Spring整合MyBatis框架-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${jdbc.driver}"/>
         <property name="jdbcUrl" value="${jdbc.url}"/>
