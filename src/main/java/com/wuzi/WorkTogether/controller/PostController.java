@@ -86,4 +86,6 @@ public class PostController {
         model.addAttribute("pagination",pagination);
         return "forum";
     }
+
 }
+

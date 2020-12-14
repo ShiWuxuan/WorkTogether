@@ -59,7 +59,7 @@ public class PostServiceImpl implements PostService {
         dto.setDetail(p.getDetail());
         //Todo 查询用户姓名
         dto.setUserName("UZI");
-       return dto;
+        return dto;
     }
 
     @Override
@@ -140,4 +140,6 @@ public class PostServiceImpl implements PostService {
         pageDto.setPostList(postDtoList);
         return pageDto;
     }
+
 }
+

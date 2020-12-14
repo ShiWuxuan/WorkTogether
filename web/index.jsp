@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: lenovo
@@ -14,7 +13,8 @@
   <link rel="stylesheet" href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css">
 
   <!--2秒后跳转到登录页面-->
-<%--  <meta http-equiv="refresh" content="2; url=${pageContext.request.contextPath}/user/toLogin" />--%>
+  <%--  <meta http-equiv="refresh" content="2; url=${pageContext.request.contextPath}/user/toLogin" />--%>
+
   <title>WorkTogether</title>
 </head>
 <body>
@@ -26,8 +26,8 @@
     <ul class="pull-right">
       <li style="display: inline">
         <a href="${pageContext.request.contextPath}/user/toLogin" style="font-size: 20px">
-        登录
-      </a>
+          登录
+        </a>
       </li>
       <li style="display: inline"><a href="${pageContext.request.contextPath}/user/toRegister" style="font-size: 20px">注册</a></li>
     </ul>

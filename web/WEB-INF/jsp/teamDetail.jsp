@@ -48,6 +48,9 @@
                         论坛
                     </a>
                 </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/user/userDetail/${userId}"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 个人中心</a>
+                </li>
                 <li class="divider">
                 </li>
                 <li>

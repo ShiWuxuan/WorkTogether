@@ -62,6 +62,9 @@
                         论坛
                     </a>
                 </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/user/userDetail/${userId}"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 个人中心</a>
+                </li>
                 <li class="divider">
                 </li>
                 <li>
@@ -99,13 +102,13 @@
                 <c:forEach var="posting" items="${pagination.postList}">
                     <tr>
                         <td style="vertical-align: middle; width: 130px">
-                        <img alt="加载失败" src="${pageContext.request.contextPath}/img/logo.png" class="img-circle" style="width: 100px;height: 100px"/>
+                            <img alt="加载失败" src="${pageContext.request.contextPath}/img/logo.png" class="img-circle" style="width: 100px;height: 100px"/>
                         </td>
                         <td style="vertical-align: middle">
                             <div class="caption" >
                                 <h3>${posting.title} <a class="btn btn-info" href="${pageContext.request.contextPath}/post/AllRecord/${posting.id}" style="float: right;margin-right: 5%">查看详情</a></h3>
                                 <p>
-                                    ${posting.detail} <a class="btn btn-default" href="#" style="float: right;margin-right: 5%">分享</a>
+                                        ${posting.detail} <a class="btn btn-default" href="#" style="float: right;margin-right: 5%">分享</a>
                                 </p>
                                 <p style="color: lightslategrey">
                                     发帖人：${posting.userName}&emsp;&emsp; 发帖时间：${posting.time}&emsp;&emsp;
