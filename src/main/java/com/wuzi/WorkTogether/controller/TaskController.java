@@ -119,7 +119,7 @@ public class TaskController {
     }
 
     @RequestMapping("completeSubTask/{taskId}/{subTaskId}")
-    public String CompleteSubTask(Model model,@PathVariable Integer taskId, @PathVariable Integer subTaskId){
+    public String completeSubTask(Model model, @PathVariable Integer taskId, @PathVariable Integer subTaskId){
         List<SubTaskDto> subTasks = taskService.completeTask(taskId,subTaskId);
         model.addAttribute("subTasks",subTasks);
         model.addAttribute("taskName",taskService.queryTaskName(taskId));

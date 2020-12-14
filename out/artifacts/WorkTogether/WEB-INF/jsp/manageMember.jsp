@@ -9,6 +9,31 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="userId" value="${userId}" scope="session"></c:set>
 <c:set var="userTel" value="${userTel}" scope="session"></c:set>
+<script type="text/javascript">
+    function dfTeam(userType,userName,userTel,teamId)
+    {
+        var theUserType = "Leader";
+        if(theUserType == userType)
+        {
+            alert("无法删除自己");
+        }
+        else if(confirm("是否确认删除"+userName+"(手机："+userTel+")。"))
+            window.location.href = "${pageContext.request.contextPath}/team/updateLeadingTeamMember/"+teamId+"/2/"+userTel;
+        else
+            window.location.href = "${pageContext.request.contextPath}/team/showLeadingMember/"+teamId;
+    }
+    function makeLeader(teamId,userTel,userType)
+    {
+        var theUserType = "Leader";
+        if(theUserType == userType)
+        {
+            alert("无法将自己转为队长");
+        }
+        else{
+            window.location.href="${pageContext.request.contextPath}/team/updateLeadingTeamMember/"+teamId+"/1/"+userTel;
+        }
+    }
+</script>
 <html>
 <head>
     <title>Work Together</title>
@@ -28,7 +53,7 @@
                     </h4>
                 </li>
                 <li class="active">
-                    <a href="${pageContext.request.contextPath}">首页</a>
+                    <a href="${pageContext.request.contextPath}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/team/myTeam/${userTel}"><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> 我的团队</a>
@@ -47,6 +72,9 @@
                         <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
                         论坛
                     </a>
+                </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/user/userDetail/${userId}"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 个人中心</a>
                 </li>
                 <li class="divider">
                 </li>
@@ -86,19 +114,10 @@
                         <td style="vertical-align: middle ;text-align: center;">${user.userName}</td>
                         <td style="vertical-align: middle ;text-align: center;">${user.userTel}</td>
                         <td style="vertical-align: middle;text-align: center;">
-                            <a href="${pageContext.request.contextPath}/team/updateLeadingTeamMember/${team.teamId}/1/${user.userTel}" class="btn btn-default active" role="button">升为队长</a>
+                            <a id="updateBtn" onclick="makeLeader(${team.teamId},${user.userTel},'${user.userType}')" class="btn btn-default active" role="button">升为队长</a>
                         </td>
                         <td style="vertical-align: middle;text-align: center;">
-                            <a onclick="dfTeam()" class="btn btn-default active" role="button">删除成员</a>
-                            <script>
-                                function dfTeam()
-                                {
-                                    if(confirm("是否确认删除${user.userName}(手机：${user.userTel})。"))
-                                        window.location.href = "${pageContext.request.contextPath}/team/updateLeadingTeamMember/${team.teamId}/2/${user.userTel}";
-                                    else
-                                        window.location.href = "${pageContext.request.contextPath}/team/showLeadingMember/${team.teamId}";
-                                }
-                            </script>
+                            <a id="deleteBtn" onclick="dfTeam('${user.userType}','${user.userName}','${user.userTel}',${team.teamId})" class="btn btn-default active" role="button">删除成员</a>
                         </td>
                     </tr>
                 </c:forEach>

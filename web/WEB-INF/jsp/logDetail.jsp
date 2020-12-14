@@ -71,6 +71,9 @@
                     </a>
                 </li>
                 <li>
+                    <a href="${pageContext.request.contextPath}/user/userDetail/${userId}"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 个人中心</a>
+                </li>
+                <li>
                     <a href="#">
                         <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
                         帮助

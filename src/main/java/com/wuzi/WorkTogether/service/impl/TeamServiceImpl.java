@@ -254,7 +254,7 @@ public class TeamServiceImpl implements TeamService {
         UserDto user;
         Team team = teamDao.findTeamByID(teamId);
         user = userDao.findUserDtoByTel(team.getLeaderTel());
-        user.setUserType("队长");
+        user.setUserType("Leader");
         users.add(user);
         for(String curTeamMemberTel : team.getMemberTel().split(","))
         {
@@ -263,7 +263,7 @@ public class TeamServiceImpl implements TeamService {
                 continue;
             }
             user = userDao.findUserDtoByTel(curTeamMemberTel);
-            user.setUserType("成员");
+            user.setUserType("Member");
             users.add(user);
         }
         return users;
@@ -290,17 +290,14 @@ public class TeamServiceImpl implements TeamService {
             return false;
         }
         if(flag == 1) {
-            teamDao.updateTeamStatus(team.getTeamIntroduction(), memberNumLimit, teamId);
             if(memberNumLimit < team.getMemberNum())
             {
                 return false;
             }
+            teamDao.updateTeamStatus(team.getTeamIntroduction(), memberNumLimit, teamId);
         }
         else if(flag == 2)
         {
-            System.out.println("修改介绍成功！");
-            System.out.println(teamIntroduction);
-            System.out.println(team.getTeamIntroduction());
             teamDao.updateTeamStatus(teamIntroduction,team.getMemberNumLimit(),teamId);
         }
         return true;

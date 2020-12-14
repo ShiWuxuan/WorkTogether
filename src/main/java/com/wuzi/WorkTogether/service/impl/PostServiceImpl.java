@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author 施武轩
@@ -44,18 +45,7 @@ public class PostServiceImpl implements PostService {
         int startIndex = size*(page-1);
         List<Post> posts = postDao.queryPostForPage(startIndex,size);
         List<PostDto> postDtoList = new ArrayList<>();
-        for (Post p : posts){
-            PostDto dto = new PostDto();
-            dto.setId(p.getId());
-            dto.setLikeNumber(p.getLikeNumber());
-            dto.setTitle(p.getTitle());
-            dto.setTime(p.getTime());
-            dto.setDetail(p.getDetail());
-            dto.setUserName(userDao.getUserNameById(p.getUserId()));
-            postDtoList.add(dto);
-        }
-        pageDto.setPostList(postDtoList);
-        return pageDto;
+        return getPageDto(pageDto, posts, postDtoList);
     }
 
     @Override
@@ -69,7 +59,7 @@ public class PostServiceImpl implements PostService {
         dto.setDetail(p.getDetail());
         //Todo 查询用户姓名
         dto.setUserName("UZI");
-       return dto;
+        return dto;
     }
 
     @Override
@@ -104,6 +94,9 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Integer addPost(Post post) {
+        if (Objects.isNull(post.getDetail())){
+            post.setDetail("无");
+        }
         int result = postDao.addPost(post);
         if(result>0){
             return post.getId();
@@ -111,5 +104,40 @@ public class PostServiceImpl implements PostService {
         else {
             return 0;
         }
+    }
+
+    @Override
+    public PageDto getMostLikePost() {
+        PageDto pageDto = new PageDto();
+        pageDto.setShowPre(false);
+        pageDto.setShowNext(false);
+        List<Post> hotPosts = postDao.queryMostLikePost();
+        List<PostDto> postDtoList = new ArrayList<>();
+        return getPageDto(pageDto, hotPosts, postDtoList);
+    }
+
+    @Override
+    public PageDto queryPostByKeyword(String keyword) {
+        PageDto pageDto = new PageDto();
+        pageDto.setShowPre(false);
+        pageDto.setShowNext(false);
+        List<Post> posts = postDao.queryPostByKeyword(keyword);
+        List<PostDto> postDtoList = new ArrayList<>();
+        return getPageDto(pageDto, posts, postDtoList);
+    }
+
+    private PageDto getPageDto(PageDto pageDto, List<Post> hotPosts, List<PostDto> postDtoList) {
+        for (Post p : hotPosts){
+            PostDto dto = new PostDto();
+            dto.setId(p.getId());
+            dto.setLikeNumber(p.getLikeNumber());
+            dto.setTitle(p.getTitle());
+            dto.setTime(p.getTime());
+            dto.setDetail(p.getDetail());
+            dto.setUserName(userDao.getUserNameById(p.getUserId()));
+            postDtoList.add(dto);
+        }
+        pageDto.setPostList(postDtoList);
+        return pageDto;
     }
 }
