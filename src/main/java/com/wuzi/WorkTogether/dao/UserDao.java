@@ -45,4 +45,6 @@ public interface UserDao {
 
     @Update("update user set userPwd = #{userPwd} where userId = #{userId}")
     public void changeUserPwd(@Param("userPwd")String userPwd,@Param("userId")Integer userId);
+
 }
+

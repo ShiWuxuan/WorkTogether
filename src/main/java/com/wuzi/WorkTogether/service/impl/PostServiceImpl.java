@@ -140,4 +140,6 @@ public class PostServiceImpl implements PostService {
         pageDto.setPostList(postDtoList);
         return pageDto;
     }
+
 }
+

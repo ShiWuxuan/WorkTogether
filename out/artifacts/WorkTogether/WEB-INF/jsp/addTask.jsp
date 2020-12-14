@@ -37,7 +37,7 @@
                     <h4>页面导航</h4>
                 </li>
                 <li class="active">
-                    <a href="${pageContext.request.contextPath}">首页</a>
+                    <a href="${pageContext.request.contextPath}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/team/myTeam/${userTel}">
@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/task/myTask/${userId}">
+                    <a href="${pageContext.request.contextPath}/task/myTask/${userID}">
                         <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                         我的任务
                     </a>
@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/log/mylog/${userId}">
+                    <a href="${pageContext.request.contextPath}/log/mylog/${userID}">
                         <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                         日志
                     </a>

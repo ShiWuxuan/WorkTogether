@@ -31,7 +31,7 @@
                     </h4>
                 </li>
                 <li class="active">
-                    <a href="${pageContext.request.contextPath}">首页</a>
+                    <a href="${pageContext.request.contextPath}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/team/myTeam/${userTel}"><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> 我的团队</a>
@@ -103,7 +103,7 @@
             <table class="table table-hover table-striped">
 
                 <tbody>
-                <c:forEach var="comment" items="${discuss}">
+                <c:forEach var="comment" items="${comments}">
                     <tr>
                         <td style="vertical-align: middle; width: 130px">
                             <img alt="加载失败" src="${pageContext.request.contextPath}/img/head.jpg" class="img-circle" style="width: 100px;height: 100px"/>
@@ -152,7 +152,7 @@
                         data: {
                             "postId":${postInfo.id},
                             "content":$("#inputCommentContent").val(),
-                            "userId":${userID}
+                            "userId":${userId}
                         },
                         success:function (data) {
                             if(data===false){

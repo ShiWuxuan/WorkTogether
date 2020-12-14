@@ -38,7 +38,7 @@
                     </h4>
                 </li>
                 <li class="active">
-                    <a href="${pageContext.request.contextPath}">首页</a>
+                    <a href="${pageContext.request.contextPath}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/team/myTeam/${userTel}"><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> 我的团队</a>
@@ -84,7 +84,7 @@
 
                     <div class="form-group">
                         <label for="inputId"></label>
-                        <input type="text" class="form-control hide" id="inputId" name="userId" value="${userID}">
+                        <input type="text" class="form-control hide" id="inputId" name="userId" value="${userId}">
                     </div>
                     <div class="form-group">
                         <label for="inputTitle">标题</label>

@@ -14,6 +14,7 @@
 
   <!--2秒后跳转到登录页面-->
   <%--  <meta http-equiv="refresh" content="2; url=${pageContext.request.contextPath}/user/toLogin" />--%>
+
   <title>WorkTogether</title>
 </head>
 <body>

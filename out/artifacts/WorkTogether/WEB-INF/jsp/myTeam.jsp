@@ -9,6 +9,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="userId" value="${userId}" scope="session"></c:set>
 <c:set var="userTel" value="${userTel}" scope="session"></c:set>
+<script>
+    function quitTeam(teamName,teamId)
+    {
+        if(confirm("是否确认退出"+teamName+"团队？您若是该团队的队长，则该团队将解散。"))
+            window.location.href = "${pageContext.request.contextPath}/team/quitTeam/"+teamId;
+        else
+            window.location.href = "${pageContext.request.contextPath}/team/backToMyTeam";
+    }
+</script>
 <html>
 <head>
     <title>Work Together</title>
@@ -28,7 +37,7 @@
                         </h4>
                     </li>
                     <li class="active">
-                        <a href="${pageContext.request.contextPath}">首页</a>
+                        <a href="${pageContext.request.contextPath}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/team/myTeam/${userTel}"><span class="glyphicon glyphicon-grain" aria-hidden="true"></span> 我的团队</a>
@@ -111,16 +120,7 @@
                                 <a href="${pageContext.request.contextPath}/team/teamDetail/${team.teamId}" class="btn btn-default active" role="button">查看详情</a>
                             </td>
                             <td style="vertical-align: middle;text-align: center;">
-                                <a onclick="quitTeam()" class="btn btn-default active" role="button">退出团队</a>
-                                <script>
-                                    function quitTeam()
-                                    {
-                                        if(confirm("是否确认退出${team.teamName}团队？您若是该团队的队长，则该团队将解散。"))
-                                            window.location.href = "${pageContext.request.contextPath}/team/quitTeam/${team.teamId}";
-                                        else
-                                            window.location.href = "${pageContext.request.contextPath}/team/backToMyTeam";
-                                    }
-                                </script>
+                                <a onclick="quitTeam('${team.teamName}',${team.teamId})" class="btn btn-default active" role="button">退出团队</a>
                             </td>
                         </tr>
                     </c:forEach>

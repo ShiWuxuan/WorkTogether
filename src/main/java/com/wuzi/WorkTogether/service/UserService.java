@@ -20,3 +20,4 @@ public interface UserService {
     public User findUserById(Integer userId);
     public Integer changeUserPwd(String userPwd,Integer userId,String newUserPwd,String confirmUserPwd);
 }
+

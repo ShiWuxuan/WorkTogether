@@ -36,7 +36,7 @@
                     <h4>页面导航</h4>
                 </li>
                 <li class="active">
-                    <a href="${pageContext.request.contextPath}">首页</a>
+                    <a href="${pageContext.request.contextPath}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a>
                 </li>
                 <li>
                     <a href="#">
