@@ -94,7 +94,6 @@
             </div>
 
             <table class="table table-hover table-striped">
-
                 <tbody>
                 <c:forEach var="posting" items="${pagination.postList}">
                     <tr>
@@ -114,7 +113,6 @@
                                 </p>
                             </div>
                         </td>
-
                     </tr>
                 </c:forEach>
                 </tbody>

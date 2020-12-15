@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="userID" value="${userId}" scope="session"></c:set>
 <c:set var="userTel" value="${userTel}" scope="session"></c:set>
-<c:set var="teamID" value="2"></c:set>
 <html>
 <head>
     <title>Work Together</title>
@@ -83,7 +82,7 @@
             <div class="page-header">
                 <h1>添加新任务</h1>
                 <div style="float: left;margin-right: 80%;">
-                    <h3>团队：</h3>
+                    <h3>团队：${team.teamName}</h3>
                 </div>
                 <div>
                     <button id="submitTask" type="submit" class="btn btn-warning btn-lg" onclick="addTask()">提交任务</button>
@@ -102,7 +101,7 @@
                         <option value="2">紧急</option>
                     </select>
                 </div>
-                <div class="form-group" >
+                <div class="form-group" style="float: left;margin-right: 100px">
                     <label>选择任务截止时间：</label>
                     <!--指定 date标记-->
                     <div class='input-group date' id="datetimepicker">
@@ -120,6 +119,16 @@
                         });
                     });
                 </script>
+                <div class="form-group" style="float: left;margin-right: 100px">
+                    <label for="memberSelect">指派任务</label>
+                    <select class="form-control" id="memberSelect" style="width: 100px;margin-right: 100px">
+                        <c:forEach var="member" items="${members}">
+                        <option value="${member.userId}">
+                                ${member.userName}
+                        </option>
+                        </c:forEach>
+                    </select>
+                </div>
             </form>
             <script>
                 function addTask() {
@@ -129,8 +138,8 @@
                             "taskName":$("#taskNameInput").val(),
                             "priority":$("#prioritySelect").val(),
                             "endTime":$("#endTimeInput").val(),
-                            "teamId":${teamID},
-                            "memberId":2
+                            "teamId":${teamId},
+                            "memberId":$("#memberSelect").val()
                         },
                         success:function (data) {
                             if (data){

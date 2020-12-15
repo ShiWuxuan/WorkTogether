@@ -34,7 +34,7 @@
   </div>
 </div>
 
-<div class="jumbotron" style="height: 580px;background-repeat: no-repeat; position: relative;
+<div class="jumbotron" style="height: 640px;background-repeat: no-repeat; position: relative;
         background-size: cover; background-image: url(${pageContext.request.contextPath}/img/bg.jpg)">
   <div class="container">
     <h1>WorkTogether</h1>

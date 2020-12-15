@@ -2,9 +2,13 @@ package com.wuzi.WorkTogether.controller;
 
 import com.wuzi.WorkTogether.domain.SubTask;
 import com.wuzi.WorkTogether.domain.Task;
+import com.wuzi.WorkTogether.domain.Team;
 import com.wuzi.WorkTogether.domain.dto.SubTaskDto;
 import com.wuzi.WorkTogether.domain.dto.TaskDto;
+import com.wuzi.WorkTogether.domain.dto.UserDto;
 import com.wuzi.WorkTogether.service.TaskService;
+import com.wuzi.WorkTogether.service.TeamService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +37,9 @@ public class TaskController {
     private List<SubTask> tempSubTaskList = new  ArrayList<>();
 
     @Resource
+    private TeamService teamService;
+
+    @Resource
     private TaskService taskService;
 
     @RequestMapping("/myTask/{userId}")
@@ -48,9 +55,13 @@ public class TaskController {
 //        return "addTask";
 //    }
 
-    @RequestMapping("/gotoAddTask")
-    public String gotoAddTask(Model model){
+    @RequestMapping("/gotoAddTask/{teamId}")
+    public String gotoAddTask(Model model,@PathVariable Integer teamId){
         model.addAttribute("tempList",tempSubTaskList);
+        Team team = teamService.findTeamById(teamId);
+        List<UserDto> members = teamService.showTeamMember(teamId);
+        model.addAttribute("members",members);
+        model.addAttribute("team",team);
         return "addTask";
     }
 

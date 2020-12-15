@@ -61,10 +61,12 @@
                     <h1>${team.teamName}团队的详情</h1>
                 </div>
 
-                <div class="col-md-4 column">
+                <div class="col-md-2 column">
                     <a href="${pageContext.request.contextPath}/team/backToMyTeam" class="btn btn-default active" role="button">返回我的团队</a>
                 </div>
-
+            <div class="col-md-2 column">
+            <a href="${pageContext.request.contextPath}/task/gotoAddTask/${teamId}" class="btn btn-default active" role="button">新增任务</a>
+            </div>
                 <div class="col-md-8 column">
                     <h3>团队介绍：${team.teamIntroduction}</h3>
                 </div>

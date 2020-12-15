@@ -36,8 +36,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskDto> queryAllTaskByUser(Integer userId) {
         List <Task> oriTasks = taskDao.queryAllTaskByUser(userId);
-        List <TaskDto> tasks = taskTransform(oriTasks);
-        return tasks;
+        return taskTransform(oriTasks);
     }
 
 
@@ -49,8 +48,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskDto> queryAllTaskByTeam(Integer teamId) {
         List <Task> oriTasks = taskDao.queryAllTaskByTeam(teamId);
-        List <TaskDto> tasks = taskTransform(oriTasks);
-        return tasks;
+        return taskTransform(oriTasks);
     }
 
     /**
@@ -81,8 +79,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskDto> queryTaskByKeyword(Integer userId, String keyword) {
         List <Task> oriTasks = taskDao.queryTaskByKeyword(userId,keyword);
-        List <TaskDto> tasks = taskTransform(oriTasks);
-        return tasks;
+        return taskTransform(oriTasks);
     }
 
     /**
@@ -106,9 +103,9 @@ public class TaskServiceImpl implements TaskService {
     }
 
     /**
-     *
-     * @param taskId
-     * @return
+     * 按任务id查询任务名
+     * @param taskId 任务id
+     * @return 任务名
      */
     @Override
     public String queryTaskName(Integer taskId) {
