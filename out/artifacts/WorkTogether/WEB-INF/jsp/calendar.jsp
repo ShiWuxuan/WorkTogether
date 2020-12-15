@@ -8,15 +8,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
+
 <head>
     <title>日历</title>
     <meta charset="UTF-8">
     <meta name="viewpoint" content="width=device-width,initial-scale=1.0">
     <title>Event Calendar</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.css">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.css">
 </head>
 
 <body>
@@ -115,6 +117,7 @@
     </div>
 </div>
 
+
 <div class="todo-overlay" id="todo-overlay">
     <div class="todo-modal" id="todo-modal">
         <div class="todo-input todo-block">
@@ -136,9 +139,8 @@
     </div>
     <div class="todo-modal-close-btn" id="todo-modal-close-btn">X</div>
 </div>
-
-</body>
 <script src="${pageContext.request.contextPath}/js/calendar.js"></script>
+</body>
 </html>
 
 <style>
@@ -158,6 +160,7 @@
     }
 
     #todoTable {
+
         margin-top: 1rem;
     }
 

@@ -1,3 +1,4 @@
+
 todoMain();
 
 function todoMain() {
@@ -47,7 +48,7 @@ function todoMain() {
 
     //加监听器
 
-        /*itemsPerPageSelectElem = document.getElementById("itemsPerPageSelectElem");*/
+    /*itemsPerPageSelectElem = document.getElementById("itemsPerPageSelectElem");*/
     function addListeners() {
         addButton.addEventListener("click", addEntry, false);
         sortButton.addEventListener("click", sortEntry, false);
@@ -61,12 +62,23 @@ function todoMain() {
 
     }
 
+    function sortEntry() {
+        todoList.sort((a, b) => {
+            let aDate = Date.parse(a.date);
+            let bDate = Date.parse(b.date);
+            return aDate - bDate;
+        });
+        save();
+
+        clearTable();
+
+        renderRows(todoList);
+    }
+
     //在todo-table中添加新的条目
 
-        /*document.addEventListener("click", onDocumentClick, false);
-        itemsPerPageSelectElem.addEventListener("change", selectItemsPerPage, false);*/
-
-
+    /*document.addEventListener("click", onDocumentClick, false);
+    itemsPerPageSelectElem.addEventListener("change", selectItemsPerPage, false);*/
     function addEntry(event) {
         let inputValue = inputElem.value;
         inputElem.value = "";
@@ -101,13 +113,23 @@ function todoMain() {
         updateSelectOptions();
     }
 
+    function _uuid() {
+        var d = Date.now();
+        if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
+            d += performance.now(); //use high-precision timer if available
+        }
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+    }
+
 
     //更新todo-table中的筛选选项
-    function updateSelectOptions() {
-        //option数组用来存储选项
 
     function updateSelectOptions() {
-
+//option数组用来存储选项
         let options = [];
         todoList.forEach((obj) => {
             options.push(obj.category);
@@ -134,29 +156,26 @@ function todoMain() {
     function save() {
         let stringifier = JSON.stringify(todoList);
 
-        console.log(todoList);
         localStorage.setItem("todoList", stringifier);
 
-       /* $.ajax(
-            '',
-            {
-                method:'post',
-                data:JSON.stringify(todoList),
-                dataType: 'json',
-                contentType:'application/json',
-                traditional:'true',
-                success:function (result){
-                    console.log(result);
-                    if (result==true){
-                        console.log("成功！");
-                    }else if (result==false){
-                        console.log("失败了！！！");
-                    }
-                }
-            }
-        );*/
-
-        localStorage.setItem("todoList", stringifier);
+        /* $.ajax(
+             '',
+             {
+                 method:'post',
+                 data:JSON.stringify(todoList),
+                 dataType: 'json',
+                 contentType:'application/json',
+                 traditional:'true',
+                 success:function (result){
+                     console.log(result);
+                     if (result==true){
+                         console.log("成功！");
+                     }else if (result==false){
+                         console.log("失败了！！！");
+                     }
+                 }
+             }
+         );*/
 
     }
 
@@ -179,18 +198,11 @@ function todoMain() {
 
     function renderRows(arr) {
 
-
-
         arr.forEach(todoObj => {
             renderRow(todoObj);
         })
-         arr.forEach(todoObj=>{
-             renderRow(todoObj);
-         })
-
         /*renderPageNumbers(arr);
         currentPage = currentPage > totalPages ? totalPages : currentPage;
-
         arr.forEach(({id, todo, date,time}) => {
                     addEvent({
                         id: id,
@@ -198,7 +210,6 @@ function todoMain() {
                         start: `${date}T${time}`,
                     });
                 })
-
         let slicedArr = arr.slice(itemsPerPage * (currentPage - 1), itemsPerPage * currentPage);
         slicedArr.forEach(todoObj => {
             renderRow(todoObj);
@@ -316,31 +327,6 @@ function todoMain() {
             }
             save();
         }
-    }
-
-    function _uuid() {
-        var d = Date.now();
-        if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
-            d += performance.now(); //use high-precision timer if available
-        }
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = (d + Math.random() * 16) % 16 | 0;
-            d = Math.floor(d / 16);
-            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-        });
-    }
-
-    function sortEntry() {
-        todoList.sort((a, b) => {
-            let aDate = Date.parse(a.date);
-            let bDate = Date.parse(b.date);
-            return aDate - bDate;
-        });
-        save();
-
-        clearTable();
-
-        renderRows(todoList);
     }
 
     function initCalendar() {
@@ -680,34 +666,25 @@ function todoMain() {
             }
             multipleFilter();
         }
-
         /*
-
         function renderPageNumbers(arr) {
             let numberOfItems = arr.length;
             totalPages = Math.ceil(numberOfItems / itemsPerPage);
-
             let pageNumberDiv = document.querySelector(".pagination-pages");
-
             pageNumberDiv.innerHTML = `<span class="material-icons chevron" data-pagination="firstPage">first_page</span>`;
-
             if (currentPage != 1) {
                 pageNumberDiv.innerHTML += `<span class="material-icons chevron" data-pagination="previousPage">chevron_left</span>`;
             }
-
             if (totalPages > 0) {
                 for (let i = 1; i <= totalPages; i++) {
                     pageNumberDiv.innerHTML += `<span data-pagination="pageNumber">${i}</span>`;
                 }
             }
-
             if (currentPage != totalPages) {
                 pageNumberDiv.innerHTML += `<span class="material-icons chevron" data-pagination="nextPage">chevron_right</span>`;
             }
-
             pageNumberDiv.innerHTML += `<span class="material-icons chevron" data-pagination="lastPage">last_page</span>`;
         }
-
         function selectItemsPerPage(event) {
             itemsPerPage = Number(event.target.value);
             localStorage.setItem("todo-itemsPerPage", itemsPerPage);

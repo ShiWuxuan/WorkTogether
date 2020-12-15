@@ -40,7 +40,7 @@
                     <a href="${pageContext.request.contextPath}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="${pageContext.request.contextPath}/team/myTeam/${userTel}">
                         <span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
                         我的团队
                     </a>
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="${pageContext.request.contextPath}/task/todoList">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         日历
                     </a>

@@ -34,14 +34,14 @@
     <form style="width: 330px" id="registerForm" action="${pageContext.request.contextPath}/user/register" method="post" class="bs-example bs-example-form" role="form">
         <div class="form-group">
             <div class="input-group">
-                <span class="input-group-addon">手机号：</span>
+                <span class="input-group-addon">手机号  ：</span>
                 <input id="userTel" name="userTel" type="text" class="form-control" placeholder="请输入您希望注册的手机号"/>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group">
-                <span class="input-group-addon">密码：</span>
-                <input id="userPwd" name="userPwd" type="password" class="form-control" placeholder="   请输入至少8位的密码"/>
+                <span class="input-group-addon">密码    ：</span>
+                <input id="userPwd" name="userPwd" type="password" class="form-control" placeholder="请输入至少8位的密码"/>
             </div>
         </div>
         <div class="form-group">

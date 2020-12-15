@@ -112,6 +112,11 @@ public class UserServiceImpl implements UserService {
         return userDao.findUserById(userId);
     }
 
+    @Override
+    public UserDto findUserByTel(String userTel) {
+        return userDao.findUserDtoByTel(userTel);
+    }
+
     /**
      * 更改用户名
      * @param userName

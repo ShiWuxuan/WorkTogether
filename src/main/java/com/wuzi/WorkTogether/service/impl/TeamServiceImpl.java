@@ -105,7 +105,7 @@ public class TeamServiceImpl implements TeamService {
      * @return
      */
     @Override
-    public Integer createTeam(Team team) {
+    public Integer createTeam(Team team,String userTel) {
         if(team.getTeamName()=="")
         {
             return 2;
@@ -125,6 +125,16 @@ public class TeamServiceImpl implements TeamService {
                 return 1;
         }
         team.setMemberNum(1);
+        User user = userDao.findUserByTel(userTel);
+        String curUserTeam = user.getTeamName();
+        if(curUserTeam.equals(""))
+        {
+            userDao.updateTeamByTel(userTel,team.getTeamName());
+        }
+        else
+        {
+            userDao.updateTeamByTel(userTel,curUserTeam+","+team.getTeamName());
+        }
         teamDao.addTeam(team);
         return 0;
     }

@@ -34,8 +34,8 @@
   </div>
 </div>
 
-<div class="jumbotron" style="height: 580px;background-repeat: no-repeat; position: relative;
-        background-size: cover; background-image: url(${pageContext.request.contextPath}/img/bg.jpg)">
+<div class="jumbotron" style="min-height: 640px;background-repeat: no-repeat; position: relative;
+        background-size: cover; background-image: url(${pageContext.request.contextPath}/img/indexbg.png)">
   <div class="container">
     <h1>WorkTogether</h1>
     <p>让你的团队更加高效</p>
@@ -48,8 +48,4 @@
 <%--  </tr>--%>
 <%--</table>--%>
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 8c821ebc823b366f207d5da439087eea7f2119cb

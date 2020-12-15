@@ -4,6 +4,7 @@ import com.wuzi.WorkTogether.domain.Team;
 import com.wuzi.WorkTogether.domain.dto.TeamDto;
 import com.wuzi.WorkTogether.domain.dto.UserDto;
 import com.wuzi.WorkTogether.service.TeamService;
+import com.wuzi.WorkTogether.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.jws.WebParam;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -30,6 +30,9 @@ import java.util.List;
 public class TeamController {
     @Autowired
     private TeamService teamService;
+
+    @Autowired
+    private UserService userService;
 
     private String curUserTel;
 
@@ -52,6 +55,9 @@ public class TeamController {
     {
         this.curUserTel = userTel;
         List<TeamDto> teams = teamService.findMyTeam(userTel);
+        UserDto user = userService.findUserByTel(userTel);
+        String userName = user.getUserName();
+        model.addAttribute("userName",userName);
         model.addAttribute("teams",teams);
         return "myTeam";
     }
@@ -130,7 +136,7 @@ public class TeamController {
         team.setMemberNumLimit(teamNumberLimit);
         team.setLeaderTel(curUserTel);
         team.setMemberTel(curUserTel);
-        switch (teamService.createTeam(team))
+        switch (teamService.createTeam(team,curUserTel))
         {
             case 0:
                 out.print("<script language=\"javascript\">alert(\"成功创建您的团队！\");window.location.href='/WorkTogether/team/myTeam/"+curUserTel+"'</script>");

@@ -7,26 +7,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 public class TeamTest {
-    @Test
-    public void testAddTeam(){
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        TeamService teamService = (TeamService) context.getBean("teamServiceImpl");
-        Team team = new Team();
-        team.setTeamName("1");
-        team.setLeaderTel("1");
-        System.out.println(teamService.createTeam(team));
-        team.setTeamName("1");
-        team.setLeaderTel("1");
-        System.out.println(teamService.createTeam(team));
-        team.setTeamName("2");
-        team.setLeaderTel("1");
-        System.out.println(teamService.createTeam(team));
-        team.setTeamName("3");
-        team.setLeaderTel("1");
-        team.setMemberNumLimit(1);
-        team.setMemberNum(1);
-        System.out.println(teamService.createTeam(team));
-    }
 
     @Test
     public void testFindMyTeam()

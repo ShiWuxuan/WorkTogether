@@ -42,8 +42,8 @@
     </div>
     <div class="form-group">
         <div class="input-group">
-            <span class="input-group-addon">密码：</span>
-            <input id="userPwd" name="userPwd" type="password" class="form-control" placeholder="   请输入该账号的密码"/>
+            <span class="input-group-addon">密    码：</span>
+            <input id="userPwd" name="userPwd" type="password" class="form-control" placeholder="请输入该账号的密码"/>
         </div>
     </div>
     <div class="form-group">

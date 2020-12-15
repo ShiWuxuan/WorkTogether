@@ -18,6 +18,7 @@ public interface UserService {
     public boolean testUserTel(String userTel);
     public boolean changeUserName(String userName,Integer userId);
     public User findUserById(Integer userId);
+    public UserDto findUserByTel(String userTel);
     public Integer changeUserPwd(String userPwd,Integer userId,String newUserPwd,String confirmUserPwd);
 }
 
