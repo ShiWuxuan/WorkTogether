@@ -79,7 +79,6 @@ public class UserController {
             modelAndView.setView(redirectView);
             session.setAttribute("userId",userId);
             session.setAttribute("userTel",userTel);
-            System.out.println(userId+","+userTel);
             modelAndView.addObject("userTel", userTel);
         }
         else {

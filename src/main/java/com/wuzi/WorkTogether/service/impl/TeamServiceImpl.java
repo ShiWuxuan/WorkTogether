@@ -193,11 +193,6 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public Integer quitTeam(Integer teamId, String userTel) {
         Team team = teamDao.findTeamByID(teamId);
-        if(userTel.equals(team.getLeaderTel()))
-        {
-            teamDao.deleteTeam(team.getTeamId());
-            return 0;
-        }
         User user = userDao.findUserByTel(userTel);
         String[] curUserTeamNames = user.getTeamName().split(",");
         String changedUserTeamName = "";
@@ -224,6 +219,11 @@ public class TeamServiceImpl implements TeamService {
             i++;
         }
         userDao.updateTeamByTel(userTel,changedUserTeamName);
+        if(userTel.equals(team.getLeaderTel()))
+        {
+            teamDao.deleteTeam(team.getTeamId());
+            return 0;
+        }
         String[] curMemberTels = team.getMemberTel().split(",");
         String changedMemberTel = "";
         Integer j = 0;
