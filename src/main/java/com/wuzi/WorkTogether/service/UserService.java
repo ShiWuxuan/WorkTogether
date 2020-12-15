@@ -12,9 +12,13 @@ import java.util.List;
  */
 public interface UserService {
 
-    public int registerUser(User user);
+    public int registerUser(String userTel,String userPwd,String confirmPwd);
     public User loginUser(String userTel,String userPwd);
     public List<User> findAllUser();
     public boolean testUserTel(String userTel);
-    public boolean changeUserName(String userName,String userTel);
+    public boolean changeUserName(String userName,Integer userId);
+    public User findUserById(Integer userId);
+    public UserDto findUserByTel(String userTel);
+    public Integer changeUserPwd(String userPwd,Integer userId,String newUserPwd,String confirmUserPwd);
 }
+

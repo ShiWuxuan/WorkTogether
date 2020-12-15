@@ -21,7 +21,7 @@ public interface TeamService {
     public Integer joinTeam(Integer teamId, String userTel);
     public Integer quitTeam(Integer teamId,String userTel);
     public List<UserDto> showTeamMember(Integer teamId);
-    public Integer createTeam(Team team);
+    public Integer createTeam(Team team,String userTel);
     public void changeTeamLeader(String leaderTel,Integer teamId);
     public boolean updateTeamStatus(Integer flag,Integer teamId,String teamIntroduction,Integer memberNumLimit);
 }

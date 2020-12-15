@@ -5,6 +5,7 @@
   Time: 11:22
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="userId" value="${userId}" scope="session"></c:set>
@@ -39,7 +40,7 @@
                     <a href="${pageContext.request.contextPath}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>首页</a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="${pageContext.request.contextPath}/team/myTeam/${userTel}">
                         <span class="glyphicon glyphicon-grain" aria-hidden="true"></span>
                         我的团队
                     </a>
@@ -51,7 +52,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="${pageContext.request.contextPath}/task/todoList">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         日历
                     </a>
@@ -69,6 +70,9 @@
                         <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
                         论坛
                     </a>
+                </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/user/userDetail/${userId}"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 个人中心</a>
                 </li>
                 <li>
                     <a href="#">

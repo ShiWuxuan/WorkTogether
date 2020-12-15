@@ -9,6 +9,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="userId" value="${userId}" scope="session"></c:set>
 <c:set var="userTel" value="${userTel}" scope="session"></c:set>
+<c:set var="userName" value="${userName}"></c:set>
+<script>
+    function quitTeam(teamName,teamId)
+    {
+        if(confirm("是否确认退出"+teamName+"团队？您若是该团队的队长，则该团队将解散。"))
+            window.location.href = "${pageContext.request.contextPath}/team/quitTeam/"+teamId;
+        else
+            window.location.href = "${pageContext.request.contextPath}/team/backToMyTeam";
+    }
+</script>
 <html>
 <head>
     <title>Work Together</title>
@@ -37,7 +47,7 @@
                         <a href="${pageContext.request.contextPath}/task/myTask/${userId}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 我的任务</a>
                     </li>
                     <li>
-                        <a href="#"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 日历</a>
+                        <a href="${pageContext.request.contextPath}/task/todoList"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 日历</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/log/mylog/${userId}"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 日志</a>
@@ -48,10 +58,13 @@
                             论坛
                         </a>
                     </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/user/userDetail/${userId}"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 个人中心</a>
+                    </li>
                     <li class="divider">
                     </li>
                     <li>
-                        <a href="#"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> 帮助</a>
+                        <a href="${pageContext.request.contextPath}/task/todoList"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> 帮助</a>
                     </li>
                 </ul>
             </div>
@@ -82,7 +95,17 @@
                 <div class="col-md-2 column">
                     <a href="${pageContext.request.contextPath}/team/showLeadingTeam" class="btn btn-default active" role="button">管理团队</a>
                 </div>
-                <div class="col-md-6 column">
+                <div class="col-md-2 column">
+                    <a onclick="enterChatroom()" class="btn btn-default active" role="button">聊天室</a>
+                    <script>
+                        function enterChatroom() {
+                            var nickname = prompt("请输入聊天名："+'${userName}')
+                            if(nickname != null && "" != nickname )
+                                window.location.href = "${pageContext.request.contextPath}/chatroom/enter/${userId}/"+nickname;
+                        }
+                    </script>
+                </div>
+                <div class="col-md-4 column">
                     <form class="form-inline" action="${pageContext.request.contextPath}/team/findMyTeamByKeyword" method="post" align="center">
                         <input type="text" name="keyword" class="form-control" placeholder="请输入团队名称"/>
                         <button type="submit" class="btn btn-default active">查找</button>
@@ -108,16 +131,7 @@
                                 <a href="${pageContext.request.contextPath}/team/teamDetail/${team.teamId}" class="btn btn-default active" role="button">查看详情</a>
                             </td>
                             <td style="vertical-align: middle;text-align: center;">
-                                <a onclick="quitTeam()" class="btn btn-default active" role="button">退出团队</a>
-                                <script>
-                                    function quitTeam()
-                                    {
-                                        if(confirm("是否确认退出${team.teamName}团队？您若是该团队的队长，则该团队将解散。"))
-                                            window.location.href = "${pageContext.request.contextPath}/team/quitTeam/${team.teamId}";
-                                        else
-                                            window.location.href = "${pageContext.request.contextPath}/team/backToMyTeam";
-                                    }
-                                </script>
+                                <a onclick="quitTeam('${team.teamName}',${team.teamId})" class="btn btn-default active" role="button">退出团队</a>
                             </td>
                         </tr>
                     </c:forEach>

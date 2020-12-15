@@ -33,3 +33,4 @@ public interface PostService {
 
     public PageDto queryPostByKeyword(String keyword);
 }
+

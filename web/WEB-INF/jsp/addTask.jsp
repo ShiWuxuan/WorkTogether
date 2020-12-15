@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="${pageContext.request.contextPath}/task/todoList">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         日历
                     </a>
@@ -69,6 +69,9 @@
                         <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
                         论坛
                     </a>
+                </li>
+                <li>
+                    <a href="${pageContext.request.contextPath}/user/userDetail/${userId}"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 个人中心</a>
                 </li>
                 <li>
                     <a href="#">

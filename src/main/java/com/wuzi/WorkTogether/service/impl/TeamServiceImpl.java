@@ -105,7 +105,7 @@ public class TeamServiceImpl implements TeamService {
      * @return
      */
     @Override
-    public Integer createTeam(Team team) {
+    public Integer createTeam(Team team,String userTel) {
         if(team.getTeamName()=="")
         {
             return 2;
@@ -125,6 +125,16 @@ public class TeamServiceImpl implements TeamService {
                 return 1;
         }
         team.setMemberNum(1);
+        User user = userDao.findUserByTel(userTel);
+        String curUserTeam = user.getTeamName();
+        if(curUserTeam.equals(""))
+        {
+            userDao.updateTeamByTel(userTel,team.getTeamName());
+        }
+        else
+        {
+            userDao.updateTeamByTel(userTel,curUserTeam+","+team.getTeamName());
+        }
         teamDao.addTeam(team);
         return 0;
     }
@@ -183,11 +193,6 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public Integer quitTeam(Integer teamId, String userTel) {
         Team team = teamDao.findTeamByID(teamId);
-        if(userTel.equals(team.getLeaderTel()))
-        {
-            teamDao.deleteTeam(team.getTeamId());
-            return 0;
-        }
         User user = userDao.findUserByTel(userTel);
         String[] curUserTeamNames = user.getTeamName().split(",");
         String changedUserTeamName = "";
@@ -214,6 +219,11 @@ public class TeamServiceImpl implements TeamService {
             i++;
         }
         userDao.updateTeamByTel(userTel,changedUserTeamName);
+        if(userTel.equals(team.getLeaderTel()))
+        {
+            teamDao.deleteTeam(team.getTeamId());
+            return 0;
+        }
         String[] curMemberTels = team.getMemberTel().split(",");
         String changedMemberTel = "";
         Integer j = 0;
@@ -254,7 +264,7 @@ public class TeamServiceImpl implements TeamService {
         UserDto user;
         Team team = teamDao.findTeamByID(teamId);
         user = userDao.findUserDtoByTel(team.getLeaderTel());
-        user.setUserType("队长");
+        user.setUserType("Leader");
         users.add(user);
         for(String curTeamMemberTel : team.getMemberTel().split(","))
         {
@@ -263,7 +273,7 @@ public class TeamServiceImpl implements TeamService {
                 continue;
             }
             user = userDao.findUserDtoByTel(curTeamMemberTel);
-            user.setUserType("成员");
+            user.setUserType("Member");
             users.add(user);
         }
         return users;
@@ -290,17 +300,14 @@ public class TeamServiceImpl implements TeamService {
             return false;
         }
         if(flag == 1) {
-            teamDao.updateTeamStatus(team.getTeamIntroduction(), memberNumLimit, teamId);
             if(memberNumLimit < team.getMemberNum())
             {
                 return false;
             }
+            teamDao.updateTeamStatus(team.getTeamIntroduction(), memberNumLimit, teamId);
         }
         else if(flag == 2)
         {
-            System.out.println("修改介绍成功！");
-            System.out.println(teamIntroduction);
-            System.out.println(team.getTeamIntroduction());
             teamDao.updateTeamStatus(teamIntroduction,team.getMemberNumLimit(),teamId);
         }
         return true;

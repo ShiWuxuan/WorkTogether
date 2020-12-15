@@ -1,11 +1,13 @@
 package com.wuzi.WorkTogether.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import com.wuzi.WorkTogether.dao.LogDao;
 import com.wuzi.WorkTogether.domain.Log;
+import com.wuzi.WorkTogether.domain.User;
 import com.wuzi.WorkTogether.domain.dto.LogDto;
+import com.wuzi.WorkTogether.domain.dto.TeamDto;
 import com.wuzi.WorkTogether.service.LogService;
-import org.apache.ibatis.annotations.Param;
+import com.wuzi.WorkTogether.service.TeamService;
+import com.wuzi.WorkTogether.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.Resource;
-import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +32,12 @@ import java.util.List;
 public class LogController {
     @Resource
     private LogService logService;
+
+    @Autowired
+    private TeamService teamService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/mylog/{userId}")
     public String getAllLogs(Model model, @PathVariable Integer userId){
@@ -72,6 +78,9 @@ public class LogController {
 
     @RequestMapping("/addLog/{userId}")
     public String addLog(Model model, @PathVariable Integer userId){
+        User user = userService.findUserById(userId);
+        List<TeamDto> teamList = teamService.findMyTeam(user.getUserTel());
+        model.addAttribute("userTeams", teamList);
         model.addAttribute("userId", userId);
         return "addLog";
     }
