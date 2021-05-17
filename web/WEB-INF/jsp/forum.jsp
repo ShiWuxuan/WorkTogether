@@ -68,7 +68,7 @@
                 <li class="divider">
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="${pageContext.request.contextPath}/user/goHelp">
                         <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
                         帮助
                     </a>

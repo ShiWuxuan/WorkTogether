@@ -201,4 +201,9 @@ public class UserController {
         }
     }
 
+    @RequestMapping("/goHelp")
+    public String goHelp(){
+        return "help";
+    }
+
 }

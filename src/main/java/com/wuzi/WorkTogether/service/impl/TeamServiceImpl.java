@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.swing.plaf.IconUIResource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author 张朝勋
@@ -121,13 +122,14 @@ public class TeamServiceImpl implements TeamService {
         List<TeamDto> teams = findAllTeam();
         for(TeamDto curTeam : teams)
         {
-            if(team.getTeamName().equals(curTeam.getTeamName()))
+            if(team.getTeamName().equals(curTeam.getTeamName())) {
                 return 1;
+            }
         }
         team.setMemberNum(1);
         User user = userDao.findUserByTel(userTel);
         String curUserTeam = user.getTeamName();
-        if(curUserTeam.equals(""))
+        if("".equals(curUserTeam) || Objects.isNull(curUserTeam))
         {
             userDao.updateTeamByTel(userTel,team.getTeamName());
         }

@@ -17,7 +17,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
         //首页、登录和注册页面放行
-        if(request.getRequestURI().contains("register")||request.getRequestURI().contains("Login")||request.getRequestURI().contains("Register")){
+        if(request.getRequestURI().contains("register")||request.getRequestURI().contains("Login")||request.getRequestURI().contains("Register")||request.getRequestURI().contains("png")){
             return true;
         }
         //登陆过则拦截器放行

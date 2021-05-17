@@ -1,39 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: Admin
-  Date: 2020/12/5
-  Time: 17:17
+  Date: 2020/12/3
+  Time: 14:33
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="userId" value="${userId}" scope="session"></c:set>
 <c:set var="userTel" value="${userTel}" scope="session"></c:set>
-<script type="text/javascript">
-    function dfTeam(userType,userName,userTel,teamId)
-    {
-        var theUserType = "Leader";
-        if(theUserType == userType)
-        {
-            alert("无法删除自己");
-        }
-        else if(confirm("是否确认删除"+userName+"(手机："+userTel+")。"))
-            window.location.href = "${pageContext.request.contextPath}/team/updateLeadingTeamMember/"+teamId+"/2/"+userTel;
-        else
-            window.location.href = "${pageContext.request.contextPath}/team/showLeadingMember/"+teamId;
-    }
-    function makeLeader(teamId,userTel,userType)
-    {
-        var theUserType = "Leader";
-        if(theUserType == userType)
-        {
-            alert("无法将自己转为队长");
-        }
-        else{
-            window.location.href="${pageContext.request.contextPath}/team/updateLeadingTeamMember/"+teamId+"/1/"+userTel;
-        }
-    }
-</script>
+<c:set var="userName" value="${userName}"></c:set>
 <html>
 <head>
     <title>Work Together</title>
@@ -85,44 +61,11 @@
         </div>
         <div class="col-md-10 column">
             <div class="page-header">
-                <c:set var="team" value="${team}"/>
-                <h1>${team.teamName}团队成员管理</h1>
+                <h1>帮助</h1>
             </div>
-
             <div class="col-md-4 column">
-                <a href="${pageContext.request.contextPath}/team/showLeadingTeam" class="btn btn-default active" role="button">返回管理团队</a>
+                <h3>如有问题请联系QQ：919973173</h3>
             </div>
-
-            <div class="col-md-8 column">
-                <h3>团队介绍：${team.teamIntroduction}</h3>
-            </div>
-            <table class="table table-hover table-striped">
-                <thead>
-
-                <tr>
-                    <th>成员类型</th>
-                    <th style="vertical-align: middle !important;text-align: center;">成员姓名</th>
-                    <th style="vertical-align: middle !important;text-align: center;">成员手机</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <c:set var="team" value="${team}"></c:set>
-                <c:forEach var="user" items="${userDtoList}">
-                    <tr>
-                        <td style="vertical-align: middle">${user.userType}</td>
-                        <td style="vertical-align: middle ;text-align: center;">${user.userName}</td>
-                        <td style="vertical-align: middle ;text-align: center;">${user.userTel}</td>
-                        <td style="vertical-align: middle;text-align: center;">
-                            <a id="updateBtn" onclick="makeLeader(${team.teamId},${user.userTel},'${user.userType}')" class="btn btn-default active" role="button">升为队长</a>
-                        </td>
-                        <td style="vertical-align: middle;text-align: center;">
-                            <a id="deleteBtn" onclick="dfTeam('${user.userType}','${user.userName}','${user.userTel}',${team.teamId})" class="btn btn-default active" role="button">删除成员</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
