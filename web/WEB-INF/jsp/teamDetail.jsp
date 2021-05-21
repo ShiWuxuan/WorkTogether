@@ -36,9 +36,7 @@
                 <li>
                     <a href="${pageContext.request.contextPath}/task/myTask/${userId}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 我的任务</a>
                 </li>
-                <li>
-                    <a href="${pageContext.request.contextPath}/task/todoList"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 日历</a>
-                </li>
+
                 <li>
                     <a href="${pageContext.request.contextPath}/log/mylog/${userId}"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 日志</a>
                 </li>
@@ -69,6 +67,7 @@
                 </div>
             <div class="col-md-2 column">
             <a href="${pageContext.request.contextPath}/task/gotoAddTask/${teamId}" class="btn btn-default active" role="button">新增任务</a>
+
             </div>
                 <div class="col-md-8 column">
                     <h3>团队介绍：${team.teamIntroduction}</h3>

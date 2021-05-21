@@ -14,8 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,13 +31,23 @@ import java.util.List;
 @Controller
 @RequestMapping("/task")
 public class TaskController {
-    private List<SubTask> tempSubTaskList = new  ArrayList<>();
+    private final List<SubTask> tempSubTaskList = new ArrayList<>();
 
     @Resource
     private TeamService teamService;
 
     @Resource
     private TaskService taskService;
+
+
+    @RequestMapping("/newTask/{teamId}")
+    public ModelAndView  newTask(ModelAndView modelAndView, @PathVariable Integer teamId){
+        tempSubTaskList.clear();
+        RedirectView redirectView = new RedirectView("/WorkTogether/task/gotoAddTask/{teamId}");
+        modelAndView.setView(redirectView);
+        modelAndView.addObject("teamId", teamId);
+        return modelAndView;
+    }
 
     @RequestMapping("/myTask/{userId}")
     public String userAllTask(Model model, @PathVariable Integer userId){
@@ -63,6 +76,7 @@ public class TaskController {
     public String addSubTask(Model model,String content, Integer weight){
         SubTask subTask = new SubTask();
         subTask.setSubTaskId(tempSubTaskList.size()+1);
+        System.out.println(tempSubTaskList.toString());
         subTask.setContent(content);
         subTask.setWeight(weight);
         tempSubTaskList.add(subTask);
@@ -70,7 +84,8 @@ public class TaskController {
     }
 
     @RequestMapping("/addTask")
-    public String addTask(Task task){
+    public ModelAndView addTask(ModelAndView modelAndView, HttpServletRequest request,Task task){
+        int teamId = Integer.parseInt(request.getParameter("teamId"));
         taskService.addTask(task);
         int totalWeight = 0;
         for (SubTask t:tempSubTaskList) {
@@ -86,7 +101,10 @@ public class TaskController {
         }
         tempSubTaskList.clear();
         //TODO 返回团队界面
-        return "myTask";
+        RedirectView redirectView = new RedirectView("/WorkTogether/team/teamDetail/{teamId}");
+        modelAndView.setView(redirectView);
+        modelAndView.addObject("teamId", teamId);
+        return modelAndView;
     }
 
     @RequestMapping("/taskDetail/{taskId}")
@@ -116,14 +134,14 @@ public class TaskController {
         return "myTask";
     }
 
-    @RequestMapping("queryTask/{userId}")
+    @RequestMapping("/queryTask/{userId}")
     public String queryTaskByUser(Model model,@PathVariable Integer userId,@RequestParam String keyword){
         List<TaskDto> tasks = taskService.queryTaskByKeyword(userId,keyword);
         model.addAttribute("tasks",tasks);
         return "myTask";
     }
 
-    @RequestMapping("completeSubTask/{taskId}/{subTaskId}")
+    @RequestMapping("/completeSubTask/{taskId}/{subTaskId}")
     public String completeSubTask(Model model, @PathVariable Integer taskId, @PathVariable Integer subTaskId){
         List<SubTaskDto> subTasks = taskService.completeTask(taskId,subTaskId);
         model.addAttribute("subTasks",subTasks);

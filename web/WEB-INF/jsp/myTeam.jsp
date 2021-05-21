@@ -47,9 +47,6 @@
                         <a href="${pageContext.request.contextPath}/task/myTask/${userId}"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> 我的任务</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/task/todoList"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> 日历</a>
-                    </li>
-                    <li>
                         <a href="${pageContext.request.contextPath}/log/mylog/${userId}"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> 日志</a>
                     </li>
                     <li>

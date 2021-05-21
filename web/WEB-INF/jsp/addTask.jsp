@@ -51,12 +51,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/task/todoList">
-                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        日历
-                    </a>
-                </li>
-                <li>
                     <a href="${pageContext.request.contextPath}/log/mylog/${userID}">
                         <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                         日志
@@ -157,6 +151,7 @@
 
             <div style="margin-bottom: 40px">
                 <button class="btn btn-info" data-toggle="modal" data-target="#myModal" >添加子任务</button>
+                <a href="${pageContext.request.contextPath}/task/newTask/${teamId}" class="btn btn-info">清空子任务</a>
             </div>
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
